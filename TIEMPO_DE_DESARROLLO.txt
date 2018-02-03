@@ -1,4 +1,5 @@
 ﻿# TIEMPO DE DESARROLLO DE APLICACIÓN WEB PARA RIFAS
 
 2018-02-03 17:46:52 -0300
--
+- Andamiajes y relaciones de instituciones, grupos, vendedores, talonarios y tickets.
+2018-02-03 18:18:41 -0300

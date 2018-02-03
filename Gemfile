@@ -28,7 +28,17 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+"
+-------------------------------------------------------------------------------
+ATENCIÓN!!!!!!
+-------------------------------------------------------------------------------
+La gema bycrypt debe comentarse antes de correr el bundle install y luego
+descomentarse. De otro modo se corrompe para windows y debe reinstalarse.
+Para instalar bycrypt:
+gem install bcrypt --platform=ruby
+-------------------------------------------------------------------------------
+"
+gem 'bcrypt', '~> 3.1.11', platforms: [:ruby, :x64_mingw, :mingw] ## OJO OJO OJO OJO OJO
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
