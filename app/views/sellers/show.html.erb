@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @seller.name %>
+</p>
+
+<p>
+  <strong>Rut:</strong>
+  <%= @seller.rut %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @seller.email %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @seller.phone_number %>
+</p>
+
+<p>
+  <strong>Num in institution:</strong>
+  <%= @seller.num_in_institution %>
+</p>
+
+<p>
+  <strong>Num of logins:</strong>
+  <%= @seller.num_of_logins %>
+</p>
+
+<p>
+  <strong>Email confirmed:</strong>
+  <%= @seller.email_confirmed %>
+</p>
+
+<p>
+  <strong>Confirm token:</strong>
+  <%= @seller.confirm_token %>
+</p>
+
+<%= link_to 'Edit', edit_seller_path(@seller) %> |
+<%= link_to 'Back', sellers_path %>

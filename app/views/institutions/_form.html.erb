@@ -1,0 +1,47 @@
+<%= form_with(model: institution, local: true) do |form| %>
+  <% if institution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(institution.errors.count, "error") %> prohibited this institution from being saved:</h2>
+
+      <ul>
+      <% institution.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :institution_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tickets_per_book %>
+    <%= form.number_field :tickets_per_book, id: :institution_tickets_per_book %>
+  </div>
+
+  <div class="field">
+    <%= form.label :books_per_seller %>
+    <%= form.number_field :books_per_seller, id: :institution_books_per_seller %>
+  </div>
+
+  <div class="field">
+    <%= form.label :draw_date %>
+    <%= form.text_field :draw_date, id: :institution_draw_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ticket_price %>
+    <%= form.number_field :ticket_price, id: :institution_ticket_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_books_per_seller %>
+    <%= form.number_field :max_books_per_seller, id: :institution_max_books_per_seller %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

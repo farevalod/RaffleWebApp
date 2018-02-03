@@ -1,0 +1,67 @@
+<%= form_with(model: seller, local: true) do |form| %>
+  <% if seller.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(seller.errors.count, "error") %> prohibited this seller from being saved:</h2>
+
+      <ul>
+      <% seller.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :seller_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rut %>
+    <%= form.text_field :rut, id: :seller_rut %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password, id: :seller_password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, id: :seller_password_confirmation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :seller_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.number_field :phone_number, id: :seller_phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :num_in_institution %>
+    <%= form.number_field :num_in_institution, id: :seller_num_in_institution %>
+  </div>
+
+  <div class="field">
+    <%= form.label :num_of_logins %>
+    <%= form.number_field :num_of_logins, id: :seller_num_of_logins %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email_confirmed %>
+    <%= form.check_box :email_confirmed, id: :seller_email_confirmed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :confirm_token %>
+    <%= form.text_field :confirm_token, id: :seller_confirm_token %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
