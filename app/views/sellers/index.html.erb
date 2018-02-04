@@ -13,6 +13,7 @@
       <th>Num of logins</th>
       <th>Email confirmed</th>
       <th>Confirm token</th>
+      <th>Group</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,6 +29,7 @@
         <td><%= seller.num_of_logins %></td>
         <td><%= seller.email_confirmed %></td>
         <td><%= seller.confirm_token %></td>
+        <td><%= seller.group %></td>
         <td><%= link_to 'Show', seller %></td>
         <td><%= link_to 'Edit', edit_seller_path(seller) %></td>
         <td><%= link_to 'Destroy', seller, method: :delete, data: { confirm: 'Are you sure?' } %></td>

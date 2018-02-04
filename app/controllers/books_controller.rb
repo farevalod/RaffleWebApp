@@ -25,9 +25,18 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
+    # Recupera la cantidad de boletos por talonario que se especificó en la institución.
+    num = @book.seller.group.institution.tickets_per_book
+
 
     respond_to do |format|
       if @book.save
+
+        # Para cada talonario se crea la cantida de boletos que se definió en la institución.
+        num.times do |i|
+          Ticket.create(num_in_book: i+1, book_id: @book.id)
+        end
+
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else

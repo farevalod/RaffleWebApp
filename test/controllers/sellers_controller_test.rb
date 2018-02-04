@@ -17,7 +17,7 @@ class SellersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create seller" do
     assert_difference('Seller.count') do
-      post sellers_url, params: { seller: { confirm_token: @seller.confirm_token, email: @seller.email, email_confirmed: @seller.email_confirmed, name: @seller.name, num_in_institution: @seller.num_in_institution, num_of_logins: @seller.num_of_logins, password: 'secret', password_confirmation: 'secret', phone_number: @seller.phone_number, rut: @seller.rut } }
+      post sellers_url, params: { seller: { confirm_token: @seller.confirm_token, email: @seller.email, email_confirmed: @seller.email_confirmed, group_id: @seller.group_id, name: @seller.name, num_in_institution: @seller.num_in_institution, num_of_logins: @seller.num_of_logins, password: 'secret', password_confirmation: 'secret', phone_number: @seller.phone_number, rut: @seller.rut } }
     end
 
     assert_redirected_to seller_url(Seller.last)
@@ -34,7 +34,7 @@ class SellersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update seller" do
-    patch seller_url(@seller), params: { seller: { confirm_token: @seller.confirm_token, email: @seller.email, email_confirmed: @seller.email_confirmed, name: @seller.name, num_in_institution: @seller.num_in_institution, num_of_logins: @seller.num_of_logins, password: 'secret', password_confirmation: 'secret', phone_number: @seller.phone_number, rut: @seller.rut } }
+    patch seller_url(@seller), params: { seller: { confirm_token: @seller.confirm_token, email: @seller.email, email_confirmed: @seller.email_confirmed, group_id: @seller.group_id, name: @seller.name, num_in_institution: @seller.num_in_institution, num_of_logins: @seller.num_of_logins, password: 'secret', password_confirmation: 'secret', phone_number: @seller.phone_number, rut: @seller.rut } }
     assert_redirected_to seller_url(@seller)
   end
 

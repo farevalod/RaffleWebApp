@@ -10,6 +10,7 @@ one:
   num_of_logins: 1
   email_confirmed: false
   confirm_token: MyString
+  group: one
 
 two:
   name: MyString
@@ -21,3 +22,4 @@ two:
   num_of_logins: 1
   email_confirmed: false
   confirm_token: MyString
+  group: two

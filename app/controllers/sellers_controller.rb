@@ -69,6 +69,6 @@ class SellersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def seller_params
-      params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token)
+      params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id)
     end
 end

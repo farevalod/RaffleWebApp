@@ -12,29 +12,33 @@ class TicketsController < ApplicationController
   def show
   end
 
-  # GET /tickets/new
-  def new
-    @ticket = Ticket.new
-  end
+  # # No se usa el new pues no se crean boletos independientes. Solo se crean con el talonario.
+  #
+  # # GET /tickets/new
+  # def new
+  #   @ticket = Ticket.new
+  # end
 
   # GET /tickets/1/edit
   def edit
   end
 
-  # POST /tickets
-  # POST /tickets.json
-  def create
-    @ticket = Ticket.new(ticket_params)
-
-    respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-        format.json { render :show, status: :created, location: @ticket }
-      else
-        format.html { render :new }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
-      end
-    end
+  # # No se usa el create pues no se crean boletos independientes. Solo se crean con el talonario.
+  #
+  # # POST /tickets
+  # # POST /tickets.json
+  # def create
+  #   @ticket = Ticket.new(ticket_params)
+  #
+  #   respond_to do |format|
+  #     if @ticket.save
+  #       format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+  #       format.json { render :show, status: :created, location: @ticket }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @ticket.errors, status: :unprocessable_entity }
+  #     end
+  #   end
   end
 
   # PATCH/PUT /tickets/1
