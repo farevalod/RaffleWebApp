@@ -1,4 +1,5 @@
 class Seller < ApplicationRecord
+  belongs_to :institution
   belongs_to :group
   has_many :books
   has_secure_password
@@ -20,6 +21,9 @@ class Seller < ApplicationRecord
   # Metodo para general el nombre de usuario que el vendedor utilizará para iniciar sesión.
   def create_user_name
     user_name = name.downcase.delete(' ')
+    while Seller.find_by(institution_id: institution_id, user_name: user_name)
+      user_name += '1'
+    end
     update( user_name: user_name )
   end
 
@@ -33,10 +37,8 @@ class Seller < ApplicationRecord
     # Este script elimina los talonario y los boletos asociados a un vendedor.
     # >>>>> OJO: RIESGOSO EN PRODUCCIÓN <<<<<
     books_ids = Book.where(seller_id: id).ids.uniq
-    puts '>>>>>>>>>> CANTIDAD DE IDS: ' + books_ids.count.to_s + ' <<<<<<<<<<'
     if books_ids.any?
       books_ids.each do |bid|
-        puts '>>>>>>>>>> UNA VUELTA EN EL CICLO PARA ELIMINAR TICKETS <<<<<<<<<<'
         Ticket.where(book_id: bid).destroy_all
       end
       Book.where(seller_id: id).destroy_all

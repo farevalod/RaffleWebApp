@@ -29,7 +29,7 @@ class SellersController < ApplicationController
     respond_to do |format|
       if @seller.save
         @seller.init_seller
-        format.html { redirect_to @seller, notice: 'Seller was successfully created.' }
+        format.html { redirect_to sellers_url, notice: 'Seller was successfully created.' }
         format.json { render :show, status: :created, location: @seller }
       else
         format.html { render :new }
@@ -74,7 +74,7 @@ class SellersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def seller_params
-    params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id)
+    params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id, :institution_id)
   end
 
 

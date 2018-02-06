@@ -37,6 +37,12 @@ de los `tickets`.
 - Creación de una función que elimina los tickets y boletos asociados cuando se elimina un vendedor.
 2018-02-05 23:27:10 -0300
 
+2018-02-06 12:21:34 -0300
+- Creación de la relación de pertenencia entre vendedor e institución
+- El script para crear nombres de usuarios ahora evita que estos se repitan dentro de una institución.
+2018-02-06 13:13:03 -0300
+
+
 
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:
