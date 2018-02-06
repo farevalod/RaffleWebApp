@@ -33,6 +33,9 @@ de los `tickets`.
 - Creación de script para generar automáticamente el nombre de usuario a los vendedores en base a su nombre
 2018-02-05 20:30:06 -0300
 
+2018-02-05 21:59:22 -0300
+- Creación de una función que elimina los tickets y boletos asociados cuando se elimina un vendedor.
+2018-02-05 23:27:10 -0300
 
 
 -----------------------------------------------------------------------------------------------------------------------

@@ -55,12 +55,10 @@ class SellersController < ApplicationController
   # DELETE /sellers/1
   # DELETE /sellers/1.json
   def destroy
-    books = Book.find_by_seller_id(@seller.id)
-    books.each do |book|
-      Ticket.find_by(book: book.id).destroy
-    end
-    books.destroy
-    @seller.destroy
+
+    @seller.del_seller_books_and_tickets
+    #@seller.destroy
+
     respond_to do |format|
       format.html { redirect_to sellers_url, notice: 'Seller was successfully destroyed.' }
       format.json { head :no_content }

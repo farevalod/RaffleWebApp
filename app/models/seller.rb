@@ -29,4 +29,19 @@ class Seller < ApplicationRecord
     create_user_name
   end
 
+  def del_seller_books_and_tickets
+    # Este script elimina los talonario y los boletos asociados a un vendedor.
+    # >>>>> OJO: RIESGOSO EN PRODUCCIÓN <<<<<
+    books_ids = Book.where(seller_id: id).ids.uniq
+    puts '>>>>>>>>>> CANTIDAD DE IDS: ' + books_ids.count.to_s + ' <<<<<<<<<<'
+    if books_ids.any?
+      books_ids.each do |bid|
+        puts '>>>>>>>>>> UNA VUELTA EN EL CICLO PARA ELIMINAR TICKETS <<<<<<<<<<'
+        Ticket.where(book_id: bid).destroy_all
+      end
+      Book.where(seller_id: id).destroy_all
+    end
+    destroy
+  end
+
 end
