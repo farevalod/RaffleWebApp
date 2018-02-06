@@ -51,6 +51,14 @@ de los `tickets`.
 - Definicion de main_page#show como root
 2018-02-06 13:49:10 -0300
 
+2018-02-06 14:03:34 -0300
+- Cuando se revisan los talonarios, si es que hay una sesión iniciada, ahora solo se  muestran los talonarios del
+  usuario respectivo.
+- Cuando se entrega el parametro book_id a la acción index de tikets, solo se muestran los boletos del talonario
+  respectivo
+- Al hacer click en el link 'show' en el listado de talonarios se redirige al listado de los tickets con el parámetro de
+  book_id correspondiente.
+2018-02-06 14:43:57 -0300
 
 
 -----------------------------------------------------------------------------------------------------------------------

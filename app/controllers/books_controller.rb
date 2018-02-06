@@ -4,20 +4,28 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    if Seller.find(session[:user_id])
+      @books = Book.where(seller_id: session[:user_id])
+    else
+      @books = Book.all
+    end
   end
 
-  # # No se crean taonarios por formularios:
+
+  # GET /books/1
+  # GET /books/1.json
+  def show
+    respond_to do |format|
+      format.html { redirect_to controller: 'tickets', action: 'index', book_id: params[:id] }
+    end
+  end
+
+  # # No se crean talonarios por formularios:
   #
-  # # GET /books/1
-  # # GET /books/1.json
-  # def show
+  # # GET /books/new
+  # def new
+  #   @book = Book.new
   # end
-
-  # GET /books/new
-  def new
-    @book = Book.new
-  end
 
   # GET /books/1/edit
   def edit
