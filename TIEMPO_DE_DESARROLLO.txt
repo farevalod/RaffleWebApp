@@ -42,6 +42,15 @@ de los `tickets`.
 - El script para crear nombres de usuarios ahora evita que estos se repitan dentro de una institución.
 2018-02-06 13:13:03 -0300
 
+2018-02-06 13:20:02 -0300
+- Creación del controlador de las sesiones de los vendedores
+- Lógica para el inicio se sesión
+- Formulario de inicio de sesión
+- Conexión de las rutas de login con el controlador de sesiones de los vendedores
+- Creación del controlador de la página principal de la app
+- Definicion de main_page#show como root
+2018-02-06 13:49:10 -0300
+
 
 
 -----------------------------------------------------------------------------------------------------------------------

@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  root 'main_page#show'
+
+  controller :seller_sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
   resources :sellers
   resources :tickets
   resources :books
