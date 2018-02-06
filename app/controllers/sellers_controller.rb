@@ -28,6 +28,7 @@ class SellersController < ApplicationController
 
     respond_to do |format|
       if @seller.save
+        @seller.init_seller
         format.html { redirect_to @seller, notice: 'Seller was successfully created.' }
         format.json { render :show, status: :created, location: @seller }
       else
@@ -54,6 +55,11 @@ class SellersController < ApplicationController
   # DELETE /sellers/1
   # DELETE /sellers/1.json
   def destroy
+    books = Book.find_by_seller_id(@seller.id)
+    books.each do |book|
+      Ticket.find_by(book: book.id).destroy
+    end
+    books.destroy
     @seller.destroy
     respond_to do |format|
       format.html { redirect_to sellers_url, notice: 'Seller was successfully destroyed.' }
@@ -62,13 +68,16 @@ class SellersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_seller
-      @seller = Seller.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def seller_params
-      params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_seller
+    @seller = Seller.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def seller_params
+    params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id)
+  end
+
+
 end

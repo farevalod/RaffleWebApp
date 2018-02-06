@@ -7,10 +7,12 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
-  # GET /books/1
-  # GET /books/1.json
-  def show
-  end
+  # # No se crean taonarios por formularios:
+  #
+  # # GET /books/1
+  # # GET /books/1.json
+  # def show
+  # end
 
   # GET /books/new
   def new
@@ -25,18 +27,10 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
-    # Recupera la cantidad de boletos por talonario que se especificó en la institución.
-    num = @book.seller.group.institution.tickets_per_book
-
 
     respond_to do |format|
       if @book.save
-
-        # Para cada talonario se crea la cantida de boletos que se definió en la institución.
-        num.times do |i|
-          Ticket.create(num_in_book: i+1, book_id: @book.id)
-        end
-
+        @book.create_tickets
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
@@ -71,13 +65,13 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def book_params
-      params.require(:book).permit(:num_in_institution, :seller_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def book_params
+    params.require(:book).permit(:num_in_institution, :seller_id)
+  end
 end

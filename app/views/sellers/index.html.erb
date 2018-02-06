@@ -5,11 +5,12 @@
 <table>
   <thead>
     <tr>
+      <th>Num in institution</th>
       <th>Name</th>
+      <th>User Name</th>
       <th>Rut</th>
       <th>Email</th>
       <th>Phone number</th>
-      <th>Num in institution</th>
       <th>Num of logins</th>
       <th>Email confirmed</th>
       <th>Confirm token</th>
@@ -21,15 +22,16 @@
   <tbody>
     <% @sellers.each do |seller| %>
       <tr>
+        <td><%= seller.num_in_institution %></td>
         <td><%= seller.name %></td>
+        <td><%= seller.user_name %></td>
         <td><%= seller.rut %></td>
         <td><%= seller.email %></td>
         <td><%= seller.phone_number %></td>
-        <td><%= seller.num_in_institution %></td>
         <td><%= seller.num_of_logins %></td>
         <td><%= seller.email_confirmed %></td>
         <td><%= seller.confirm_token %></td>
-        <td><%= seller.group %></td>
+        <td><%= seller.group.name %></td>
         <td><%= link_to 'Show', seller %></td>
         <td><%= link_to 'Edit', edit_seller_path(seller) %></td>
         <td><%= link_to 'Destroy', seller, method: :delete, data: { confirm: 'Are you sure?' } %></td>

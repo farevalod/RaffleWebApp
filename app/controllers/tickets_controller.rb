@@ -39,7 +39,7 @@ class TicketsController < ApplicationController
   #       format.json { render json: @ticket.errors, status: :unprocessable_entity }
   #     end
   #   end
-  end
+  # end
 
   # PATCH/PUT /tickets/1
   # PATCH/PUT /tickets/1.json
@@ -75,4 +75,5 @@ class TicketsController < ApplicationController
     def ticket_params
       params.require(:ticket).permit(:name, :email, :phone_number, :num_in_book, :book_id)
     end
+
 end
