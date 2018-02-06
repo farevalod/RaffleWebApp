@@ -1,0 +1,67 @@
+<%= form_with(model: admin, local: true) do |form| %>
+  <% if admin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
+
+      <ul>
+      <% admin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :admin_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_name %>
+    <%= form.text_field :user_name, id: :admin_user_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password, id: :admin_password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, id: :admin_password_confirmation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, id: :admin_phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :admin_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :confirm_token %>
+    <%= form.text_field :confirm_token, id: :admin_confirm_token %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email_confirmed %>
+    <%= form.check_box :email_confirmed, id: :admin_email_confirmed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :institution_id %>
+    <%= form.text_field :institution_id, id: :admin_institution_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admin_level %>
+    <%= form.number_field :admin_level, id: :admin_admin_level %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

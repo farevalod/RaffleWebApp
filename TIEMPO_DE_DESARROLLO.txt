@@ -60,6 +60,16 @@ de los `tickets`.
   book_id correspondiente.
 2018-02-06 14:43:57 -0300
 
+2018-02-06 15:55:03 -0300
+- Intento de poner un boton para inciar y cerrar sesión según corresponda.
+2018-02-06 16:41:06 -0300
+
+2018-02-06 19:20:28 -0300
+- Botón de inicio/cierre de sesión funcionando.
+- Andamiaje de los administradores.
+- Constrolador de las sesiones de los administradores.
+2018-02-06 19:56:57 -0300
+
 
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:

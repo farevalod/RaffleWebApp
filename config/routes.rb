@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
-  root 'main_page#show'
+  resources :admins
+  get 'admin_sessions/new'
+
+  get 'admin_sessions/create'
+
+  get 'admin_sessions/destroy'
+
+  root 'main_page#show', as: 'main_page'
 
   controller :seller_sessions do
     get 'login' => :new

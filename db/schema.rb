@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206153531) do
+ActiveRecord::Schema.define(version: 20180206224527) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "name"
+    t.string "user_name"
+    t.string "password_digest"
+    t.string "phone_number"
+    t.string "email"
+    t.string "confirm_token"
+    t.boolean "email_confirmed"
+    t.integer "institution_id"
+    t.integer "admin_level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["institution_id"], name: "index_admins_on_institution_id"
+  end
 
   create_table "books", force: :cascade do |t|
     t.integer "num_in_institution"

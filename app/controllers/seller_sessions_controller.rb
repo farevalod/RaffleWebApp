@@ -14,6 +14,6 @@ class SellerSessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_url, notice: "Logged out"
+    redirect_to main_page_path, notice: "Logged out"
   end
 end

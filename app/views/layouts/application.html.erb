@@ -20,6 +20,14 @@
   <li>Settings</li>
 </ul>
 
+<div>
+  <% if session[:user_id] or session[:admin_id] %>
+    <%= button_to 'Cerrar Sesion' , logout_path, method: :delete %>
+  <% else %>
+    <%= button_to 'Iniciar Sesion' , login_path, method: :get %>
+  <% end %>
+</div>
+
 <div class="search">Search the table</div>
 
 
