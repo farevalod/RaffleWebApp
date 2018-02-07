@@ -21,12 +21,18 @@
 </ul>
 
 <div>
-  <% if session[:user_id] or session[:admin_id] %>
-    <%= button_to 'Cerrar Sesion' , logout_path, method: :delete %>
+  <% if session[:user_id] %>
+    <%= button_to 'Cerrar Sesión' , logout_path, method: :delete %>
+  <% elsif session[:admin_id] %>
+    <%= button_to 'Cerrar Sesión' , logout_admin_path, method: :delete %>
   <% else %>
-    <%= button_to 'Iniciar Sesion' , login_path, method: :get %>
+    <%= button_to 'Iniciar Sesión' , login_path, method: :get %>
   <% end %>
 </div>
+
+<% if flash[:notice] %>
+  <p id="notice"><%= flash[:notice] %></p>
+<% end %>
 
 <div class="search">Search the table</div>
 

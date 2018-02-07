@@ -67,8 +67,15 @@ de los `tickets`.
 2018-02-06 19:20:28 -0300
 - Botón de inicio/cierre de sesión funcionando.
 - Andamiaje de los administradores.
-- Constrolador de las sesiones de los administradores.
+- Controlador de las sesiones de los administradores.
 2018-02-06 19:56:57 -0300
+
+2018-02-06 20:04:00 -0300
+- Logica, formularios y rutas para el inicio de sesión de los administradores.
+- El botón de cerrar sesión sirve también para los admins.
+- Ahora se muestran las notificaciones.
+2018-02-06 20:49:12 -0300
+
 
 
 -----------------------------------------------------------------------------------------------------------------------
