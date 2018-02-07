@@ -76,12 +76,17 @@ de los `tickets`.
 - Ahora se muestran las notificaciones.
 2018-02-06 20:49:12 -0300
 
+2018-02-07 15:30:13 -0300
+- Se añade un poco de css para los formularios.
+- Se quita el acceso a los vendedores a las secciones de los administradores (instituciones, grupos y adminstradores).
+2018-02-07 16:25:49 -0300
+
 
 
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:
-- Sistema de inicio de sesión de vendedores
-- Crear usuarios administradores con su sistema de incio de sesión
+
+
 - Configurar información que los vendedores pueden ver
 - Opciones de administradores de institución:
     - Aceptar/rechazar solicitudes de un nuevo talonario para vendedores que ya alcanzaron el máximo

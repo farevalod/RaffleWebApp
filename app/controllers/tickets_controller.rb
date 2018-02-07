@@ -7,7 +7,8 @@ class TicketsController < ApplicationController
     if params[:book_id]
       @tickets = Ticket.where(book_id: params[:book_id])
     else
-      @tickets = Ticket.all
+      # @tickets = Ticket.all
+      redirect_to books_url, notice: "Select a book"
     end
   end
 
