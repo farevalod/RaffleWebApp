@@ -12,6 +12,9 @@ class SellersController < ApplicationController
   # GET /sellers/1
   # GET /sellers/1.json
   def show
+    @admin = Admin.find_by(id: session[:admin_id])
+    @tickets_sold = @seller.calculate_tickets_sold
+    @books_sold = @seller.calculate_books_sold
   end
 
   # GET /sellers/new

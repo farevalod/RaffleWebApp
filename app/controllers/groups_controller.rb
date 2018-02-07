@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @sellers = Seller.where(group_id: params[:id])
+    @sellers = Seller.where(group_id: params[:id]).order(:name)
   end
 
   # GET /groups/new

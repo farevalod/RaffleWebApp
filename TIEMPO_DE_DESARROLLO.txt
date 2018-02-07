@@ -91,6 +91,13 @@ de los `tickets`.
 - Cada vendedor del listado posee la opcion mostrar.
 2018-02-07 17:59:00 -0300
 
+2018-02-07 18:47:30 -0300
+- Se modifica el show de los vendedores para mostrar los datos como tabla
+- Se limitan los datos personales que el administrador puede ver del vendedor.
+- Se crean funciones para calcular la cantidad de boletos y talonarios vendidos por cada vendedor.
+2018-02-07 20:04:44 -0300
+
+
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:
 

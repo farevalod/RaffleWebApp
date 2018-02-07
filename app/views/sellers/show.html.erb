@@ -1,49 +1,51 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @seller.name %>
-</p>
+<% if @admin %>
+  <%= render 'sellers/admin_show' %>
+<% else %>
 
-<p>
-  <strong>Rut:</strong>
-  <%= @seller.rut %>
-</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @seller.email %>
-</p>
+  <table>
+    <tbody>
 
-<p>
-  <strong>Phone number:</strong>
-  <%= @seller.phone_number %>
-</p>
+        <tr>
+          <td><strong>Nombre:</strong></td>
+          <td><%= @seller.name %></td>
+        </tr>
 
-<p>
-  <strong>Num in institution:</strong>
-  <%= @seller.num_in_institution %>
-</p>
+        <tr>
+          <td><strong>RUT:</strong></td>
+          <td><%= @seller.rut %></td>
+        </tr>
 
-<p>
-  <strong>Num of logins:</strong>
-  <%= @seller.num_of_logins %>
-</p>
+        <tr>
+          <td><strong>Email:</strong></td>
+          <td><%= @seller.email %></td>
+        </tr>
 
-<p>
-  <strong>Email confirmed:</strong>
-  <%= @seller.email_confirmed %>
-</p>
+        <tr>
+          <td><strong>Teléfono:</strong></td>
+          <td><%= @seller.phone_number %></td>
+        </tr>
 
-<p>
-  <strong>Confirm token:</strong>
-  <%= @seller.confirm_token %>
-</p>
+        <tr>
+          <td><strong>Boletos Vendidos:</strong></td>
+          <td><%= @tickets_sold%></td>
+        </tr>
 
-<p>
-  <strong>Group:</strong>
-  <%= @seller.group %>
-</p>
+        <tr>
+          <td><strong>Talonarios Completados:</strong></td>
+          <td><%= @books_sold %></td>
+        </tr>
+
+        <tr>
+          <td><strong>Group:</strong></td>
+          <td><%= @seller.group.name %></td>
+        </tr>
+    </tbody>
+  </table>
+
+<% end %>
 
 <%= link_to 'Edit', edit_seller_path(@seller) %> |
 <%= link_to 'Back', sellers_path %>
