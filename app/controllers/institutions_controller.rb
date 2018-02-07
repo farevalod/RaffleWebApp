@@ -11,6 +11,7 @@ class InstitutionsController < ApplicationController
   # GET /institutions/1
   # GET /institutions/1.json
   def show
+    @groups = Group.where(institution_id: params[:id])
   end
 
   # GET /institutions/new

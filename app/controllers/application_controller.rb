@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def authorize_admin
     unless Admin.find_by(id: session[:admin_id])
-      redirect_to main_page_url, notice: "Necesitas permisos de administrador"
+      redirect_to main_page_url, notice: "Necesitas permisos de administrador de institución"
     end
   end
 

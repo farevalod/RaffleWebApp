@@ -81,7 +81,15 @@ de los `tickets`.
 - Se quita el acceso a los vendedores a las secciones de los administradores (instituciones, grupos y adminstradores).
 2018-02-07 16:25:49 -0300
 
+2018-02-07 16:35:06 -0300
+- Se implemeta que cuando el administrador ve la información de su institución, también ve los grupos de vendedores.
+- Se modifica el listado de los vendores para mostrar solo la opción de Mostrar con un botón.
+2018-02-07 17:06:22 -0300
 
+2018-02-07 17:59:00 -0300
+- Cuando un admistrador abre un grupo, dentro de la acción show de este se carga el listado de vendedores.
+- Cada vendedor del listado posee la opcion mostrar.
+2018-02-07 17:59:00 -0300
 
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:
