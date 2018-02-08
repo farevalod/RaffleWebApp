@@ -1,0 +1,187 @@
+
+ADMINISTRADOR DE INSTITUCIÓN
+
+    * Tickets:
+        - Listado:   NO PUEDE VERLO
+        - Elemento:  NO PUEDE VERLO
+        - Crear:     Se crean automáticamente cuando crea un nuevo vendedor.
+        - Editar:    NO PUEDE
+        - Destruir:  A futuro aceptar implementar que pueda aceptar la eliminación de un ticket que haya solicitado el
+                        usuario (con un mensaje con la justificación correspondiente). Esta eliminación deberá ser
+                        ratificada por el administrador de aplicación (solo con un click para evitar burocracia).
+
+        *Solo puede ver la cantidad de tickets vendidos por los grupos o los vendedores.
+
+    * Books:
+        - Listado:  Puede ver todos los talonarios de su institución y la información relacionada. Se le mostrará el
+                número de boletos vendidos y pagados de cada talonario. Así como el nombre y grupo de su vendedor.
+        - Elemento: NO es necesario si es que se muetra claramente todo en el listado. Sino, permitir que se vean.
+        - Crear:    Se crean automáticamente al crar un vendedor. Si un vendedor suepera la cantidad máxima de
+                        talonarios puede solicitar más, pero cada talonario extra debe ser explícitamente aceptado por
+                        un adminstrador de institución. (Con un click para evitar burocracia)
+        - Editar:   Puede modificar la cantidad de boletos pagados de un talonario.
+        - Destruir: NO PUEDE. Salvo solicitud justificada a un admin de aplicación.
+
+    * Sellers:
+        - Listado:   Puede ver solo los de su institución.
+        - Elemento:  Puede ver parte de la información como la catidad de boletos vendidos y la cantidad de boletos
+                        pagados. No puede ver los datos de contacto como email o teléfono, pero los puede solicitar
+                        justificadamente al administrados de aplicación a través de un formulario.                      --> considerar la creación del controlador PermissionRequest (para vendedores y admins)
+        - Crear:     Puede crear desde la pagina de un grupo de su institución. Puede crearlos a mano uno a uno, o por
+                        medio de un archvivo csv. Solo puede ingresar los nombres y RUTs.
+        - Editar:    Solo puede editar el nombre y rut de un usuario que no haya iniciado sesión. El user_name se cambia
+                        automáticamente. Si el usuario ya inició sesión es este quien puede soicitar la modificación de
+                        los datos mencionados y el admin de institución debe aceptarlos. (Excepto el cambio de nombre de
+                        usuario, que se acepta automáticamente.                                                         --> Evaluar si permitir el cambio de nombre de usuario en cualquier momento o solo en caso de que el generado por defecto se repita en una misma institución.
+        - Destruir:  NO PUEDE. Salvo solicitud justificada a los administradores de aplicación.
+
+    * Groups:
+        - Listado:  Puede ver los grupos de su institución.
+        - Elemento: Si puede ver el detalle de un grupo. En esta pestaña se le muestra también los vendedores del grupo
+        - Crear:    Pede crear grupos
+        - Editar:   Si puede. Puede agregar vendedores o cambiar el nombre.
+        - Destruir: Solo puede en caso de que ese grupo no haya vendido ningún boleto. Si algún vendedor ya inicio
+                        sesión e ingresó sus datos de usuario se le debe advertir. Si ya hay boletos vendidos solo se
+                        podrá eliminar mediante una soicitud justificada a un admin de app.
+
+    * Admins:
+        - Listado:  Puede ver los administradores de su institución.
+        - Elemento: Puede ver los detalles de cada admin y sus ultimos movimientos (por ejemplo: el ingreso de pagos o
+                        la aceptación de alguna solicitud de un vendedor).
+        - Crear:    Solo el admin principal de la institución puede agregar nuevos administradores de institución.
+        - Editar:   Si puede editar todos los datos de los admins de su institución, solo si es el admin principal.
+        - Destruir: Solo si es admin principal puede destruir a otros admins.
+
+    * Institutions:
+        - Listado:  NO PUEDE VERLO
+        - Elemento: SOLO PUEDE VER SU INSTITUCIÓN
+        - Crear:    NO PUEDE
+        - Editar:   Solo puede editar datos de su institución
+        - Destruir: NO PUEDE
+
+    * Super Admins:
+        - Listado:  NO PUEDE
+        - Elemento: NO PUEDE
+        - Crear:    NO PUEDE
+        - Editar:   NO PUEDE
+        - Destruir: NO PUEDE
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+ADMINISTRADOR DE APLICACIÓN
+
+ * Tickets:
+        - Listado:  PUEDE VERLO Y HACERLO TODO
+        - Elemento: PUEDE VERLO Y HACERLO TODO
+        - Crear:    PUEDE VERLO Y HACERLO TODO
+        - Editar:   PUEDE VERLO Y HACERLO TODO
+        - Destruir: PUEDE VERLO Y HACERLO TODO
+
+    * Books:
+
+        - Listado:  PUEDE VERLO Y HACERLO TODO
+        - Elemento: PUEDE VERLO Y HACERLO TODO
+        - Crear:    PUEDE VERLO Y HACERLO TODO
+        - Editar:   PUEDE VERLO Y HACERLO TODO
+        - Destruir: PUEDE VERLO Y HACERLO TODO
+
+    * Sellers:
+        - Listado:  PUEDE VERLO Y HACERLO TODO
+        - Elemento: PUEDE VERLO Y HACERLO TODO
+        - Crear:    PUEDE VERLO Y HACERLO TODO
+        - Editar:   PUEDE VERLO Y HACERLO TODO
+        - Destruir: PUEDE VERLO Y HACERLO TODO
+
+    * Groups:
+        - Listado:  PUEDE VERLO Y HACERLO TODO
+        - Elemento: PUEDE VERLO Y HACERLO TODO
+        - Crear:    PUEDE VERLO Y HACERLO TODO
+        - Editar:   PUEDE VERLO Y HACERLO TODO
+        - Destruir: PUEDE VERLO Y HACERLO TODO
+
+    * Admins:
+        - Listado:  PUEDE VERLO Y HACERLO TODO
+        - Elemento: PUEDE VERLO Y HACERLO TODO
+        - Crear:    PUEDE VERLO Y HACERLO TODO
+        - Editar:   PUEDE VERLO Y HACERLO TODO
+        - Destruir: PUEDE VERLO Y HACERLO TODO
+
+    * Institutions:
+        - Listado:  PUEDE VERLO Y HACERLO TODO
+        - Elemento: PUEDE VERLO Y HACERLO TODO
+        - Crear:    PUEDE VERLO Y HACERLO TODO
+        - Editar:   PUEDE VERLO Y HACERLO TODO
+        - Destruir: PUEDE VERLO Y HACERLO TODO
+
+    * Super Admins:
+        - Listado:  PUEDE VERLO Y HACERLO TODO
+        - Elemento: PUEDE VERLO Y HACERLO TODO
+        - Crear:    Solo los super admins principales
+        - Editar:   Solo los super admins principales
+        - Destruir: Solo los super admins principales
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+VENDEDOR
+
+ * Tickets:
+        - Listado:  Puede ver sus tickets
+        - Elemento: Puede ver algunos datos como el nombre de la persona, la fecha de venta y si ya lo pagó a la
+                        institución.
+        - Crear:    NO PUEDE. Se crean automáticamente con los talonarios.
+        - Editar:   NO PUEDE. Para disminuir errores se le pide que siempre revise los datos antes de concretar la
+                        venta. Si aún así ocurre un error deberá hacer una solicitud justificada a un administrador de
+                        institución.
+        - Destruir: NO PUEDE. Los boeletos solo se destruyen si se destruye el talonario.
+
+    * Books:
+        - Listado:  Puede ver sus talonarios
+        - Elemento: Puede ver sus talonarios. Al abrirlo ve el listado de boletos.
+        - Crear:    Puede agregar talonarios hasta alcanzar el máximo establecido por la institución. Una vez alcanzado
+                        este límite puede solicitar más talonarios con una solicitud justificada al admin de institución
+        - Editar:   NO PUEDE
+        - Destruir: NO PUEDE. Por motivos muy específicos (como que solicitó un talonario extra que en verdad no puede
+                        vender) puede solicitar justificadamente al admin de la institución, que a su vez debe ser
+                        ratificado por un admin de app.
+
+    * Sellers:
+        - Listado:  NO PUEDE
+        - Elemento: Puede ver su información personal.
+        - Crear:    NO PUEDE
+        - Editar:   Puede modificar sus datos de contacto. Para su nombre y su RUT debe enviar solicitud justificada al
+                       admin de institución.
+        - Destruir: NO PUEDE
+
+    * Groups:
+        - Listado:  NO PUEDE
+        - Elemento: NO PUEDE
+        - Crear:    NO PUEDE
+        - Editar:   NO PUEDE
+        - Destruir: NO PUEDE
+
+    * Admins:
+        - Listado:  NO PUEDE
+        - Elemento: NO PUEDE
+        - Crear:    NO PUEDE
+        - Editar:   NO PUEDE
+        - Destruir: NO PUEDE
+
+    * Institutions:
+        - Listado:  NO PUEDE
+        - Elemento: NO PUEDE
+        - Crear:    NO PUEDE
+        - Editar:   NO PUEDE
+        - Destruir: NO PUEDE
+
+    * Super Admins:
+        - Listado:  NO PUEDE
+        - Elemento: NO PUEDE
+        - Crear:    NO PUEDE
+        - Editar:   NO PUEDE
+        - Destruir: NO PUEDE
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------

@@ -97,6 +97,9 @@ de los `tickets`.
 - Se crean funciones para calcular la cantidad de boletos y talonarios vendidos por cada vendedor.
 2018-02-07 20:04:44 -0300
 
+2018-02-07 21:35:08 -0300
+- Planeación y esquematización de los accesos y permisos que tienen y no tienen cada uno de los tipos de usuarios.
+2018-02-07 23:19:30 -0300
 
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:
@@ -112,6 +115,8 @@ Proximos Pasos:
 - Opciones de administradores de la app
     - Aceptar/rechazar solicitudes de eliminar o modificar un boleto (llega un email con los links necesarios)
     - Agregar nevas instituciones y sus administradores
+
+- Creación de la tabla de base de datos de Email.
 
 - Envio de email para los administradores
 - Envío de email para los vendedores
