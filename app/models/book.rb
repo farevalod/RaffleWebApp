@@ -14,4 +14,29 @@ class Book < ApplicationRecord
     end
   end
 
+  def self.select_books_to_show(admin_id, user_id)
+    admin = Admin.find_by(id: admin_id)
+    if admin
+      case admin.admin_level
+        when 1 .. 2
+          books = Book.all
+        when 3 .. 4
+          books = Book.where(institution_id: admin.institution.id)
+      end
+    else
+      books = Book.where(seller_id: user_id)
+      # Cuando no hay ni admin ni user esta cubierto por el before_action: authorize
+    end
+    books
+  end
+
+  def tickets_sold
+    Ticket.where(book_id: id).where(sold: true).count
+  end
+
+  def tickets_paid
+    Ticket.where(book_id: id).where(paid: true).count
+  end
+
+
 end

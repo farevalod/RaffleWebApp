@@ -46,16 +46,28 @@ class Seller < ApplicationRecord
     destroy
   end
 
-  def calculate_tickets_sold
+  def tickets_sold
     sold = 0
     Book.where(seller_id: id).each do |book|
       sold += Ticket.where(book_id: book.id).where(sold: true).count
     end
-    return sold #Por alguna razón al noponer el retun devolvía un ojeto
+    sold
   end
 
-  def calculate_books_sold
+  def books_sold
     Book.where(seller_id: id, sold: true).count
+  end
+
+  def tickets_paid
+    paid = 0
+    Book.where(seller_id: id).each do |book|
+      paid += Ticket.where(book_id: book.id).where(paid: true).count
+    end
+    paid
+  end
+
+  def books_paid
+    Book.where(seller_id: id, paid: true).count
   end
 
 end

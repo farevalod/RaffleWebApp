@@ -17,6 +17,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_seller_s_admin
+    admin = Admin.find_by(id: session[:admin_id])
+    if admin
+      if admin.admin_level == 3 or admin.admin_level == 4
+        redirect_to institution_url(admin.institution.id), notice: "Los administrdores de instituciones no poseen boletos"
+      end
+    end
+  end
+
   def set_last_page_visited
     session[:previous_page] = "#{request.original_url}"
   end

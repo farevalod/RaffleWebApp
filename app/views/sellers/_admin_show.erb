@@ -23,12 +23,22 @@
 
   <tr>
     <td><strong>Boletos Vendidos:</strong></td>
-    <td><%= @tickets_sold%></td>
+    <td><%= @seller.tickets_sold%></td>
+  </tr>
+
+  <tr>
+    <td><strong>Boletos Pagados:</strong></td>
+    <td><%= @seller.tickets_paid%></td>
   </tr>
 
   <tr>
     <td><strong>Talonarios Completados:</strong></td>
-    <td><%= @books_sold %></td>
+    <td><%= @seller.books_sold %></td>
+  </tr>
+
+  <tr>
+    <td><strong>Talonarios Pagados:</strong></td>
+    <td><%= @seller.books_paid %></td>
   </tr>
 
 

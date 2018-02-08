@@ -2,21 +2,22 @@
 ADMINISTRADOR DE INSTITUCIÓN
 
     * Tickets:
-        - Listado:   NO PUEDE VERLO
-        - Elemento:  NO PUEDE VERLO
-        - Crear:     Se crean automáticamente cuando crea un nuevo vendedor.
-        - Editar:    NO PUEDE
-        - Destruir:  A futuro aceptar implementar que pueda aceptar la eliminación de un ticket que haya solicitado el
+        + Listado:   NO PUEDE VERLO
+        + Elemento:  NO PUEDE VERLO
+        + Crear:     Se crean automáticamente cuando crea un nuevo vendedor.
+        + Editar:    NO PUEDE
+        + Destruir:  A futuro aceptar implementar que pueda aceptar la eliminación de un ticket que haya solicitado el
                         usuario (con un mensaje con la justificación correspondiente). Esta eliminación deberá ser
                         ratificada por el administrador de aplicación (solo con un click para evitar burocracia).
 
         *Solo puede ver la cantidad de tickets vendidos por los grupos o los vendedores.
 
     * Books:
-        - Listado:  Puede ver todos los talonarios de su institución y la información relacionada. Se le mostrará el
+        + Listado:  Puede ver todos los talonarios de su institución y la información relacionada. Se le mostrará el
                 número de boletos vendidos y pagados de cada talonario. Así como el nombre y grupo de su vendedor.
-        - Elemento: NO es necesario si es que se muetra claramente todo en el listado. Sino, permitir que se vean.
-        - Crear:    Se crean automáticamente al crar un vendedor. Si un vendedor suepera la cantidad máxima de
+        + Elemento: Puede ver la información de los talonarios de su institución. Además verá las opciones para
+                        ingresar los pagos.
+        + Crear:    Se crean automáticamente al crear un vendedor. Si un vendedor suepera la cantidad máxima de
                         talonarios puede solicitar más, pero cada talonario extra debe ser explícitamente aceptado por
                         un adminstrador de institución. (Con un click para evitar burocracia)
         - Editar:   Puede modificar la cantidad de boletos pagados de un talonario.

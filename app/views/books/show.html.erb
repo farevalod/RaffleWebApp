@@ -1,14 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Num in institution:</strong>
-  <%= @book.num_in_institution %>
-</p>
+<table>
+  <tbody>
 
-<p>
-  <strong>Seller:</strong>
-  <%= @book.seller %>
-</p>
+  <tr>
+    <td><strong>Vendedor del Talonario:</strong></td>
+    <td><%= @book.seller.name %></td>
+  </tr>
+
+  <tr>
+    <td><strong>Boletos Vendidos:</strong></td>
+    <td><%= @book.seller.tickets_sold %></td>
+  </tr>
+
+  <tr>
+    <td><strong>Boletos Pagados a la Institución:</strong></td>
+    <td><%= @book.seller.tickets_paid %></td>
+  </tr>
+
+  <% unless params[:payment]%>
+    <tr>
+      <td></td>
+      <td><%= button_to "Ingresar pago" , book_path(@book.id), params:{payment: true}, method: :get%></td>
+    </tr>
+  <%end%>
+
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
+
+<%if params[:payment]%>
+  <%= render 'payment/new'%>
+<%end%>

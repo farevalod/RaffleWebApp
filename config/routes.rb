@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   root 'main_page#show', as: 'main_page'
 
+  controller :payment do
+    get 'payment' => :new
+    post 'payment' => :create
+  end
+
   controller :admin_sessions do
     get 'login/admin' => :new
     post 'login/admin' => :create

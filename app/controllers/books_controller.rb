@@ -4,19 +4,17 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    if Seller.find(session[:user_id])
-      @books = Book.where(seller_id: session[:user_id])
-    else
-      @books = Book.all
-    end
+    @books = Book.select_books_to_show(session[:admin_id], session[:user_id])
   end
 
 
   # GET /books/1
   # GET /books/1.json
   def show
-    respond_to do |format|
-      format.html { redirect_to controller: 'tickets', action: 'index', book_id: params[:id] }
+    if Seller.find_by(id: session[:user_id])
+      respond_to do |format|
+        format.html { redirect_to controller: 'tickets', action: 'index', book_id: params[:id] }
+      end
     end
   end
 

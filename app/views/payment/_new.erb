@@ -1,0 +1,26 @@
+<div class="form">
+
+  <%= form_tag do %>
+
+    <table>
+      <thead>
+      <th colspan="3"><legend>Ingresa la cantidad de tickets a pagar:</legend></th>
+      </thead>
+
+      <tbody>
+
+      <tr>
+        <td><%= label_tag :quantity, 'Cantidad:' %></td>
+        <td><%= number_field_tag :quantity, params[:quantity] %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= submit_tag "Ingresar" %></td>
+      </tr>
+
+      </tbody>
+    </table>
+
+
+  <% end %>
+</div>

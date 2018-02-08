@@ -101,6 +101,33 @@ de los `tickets`.
 - Planeación y esquematización de los accesos y permisos que tienen y no tienen cada uno de los tipos de usuarios.
 2018-02-07 23:19:30 -0300
 
+2018-02-08 12:13:05 -0300
+- Se quita el acceso a los admin de institución a los boletos
+- Se se establecen qué talonarios se le mostraran a un super admin, admin o vendedor.
+2018-02-08 13:05:02 -0300
+
+2018-02-08 13:20:14 -0300
+- Cuando un admin abre un talonario en particular puede ver su información. Cuando lo hace un vendedor es redirigido a
+  la página de los boletos correspondientes.
+- Se crearon las columas paid y paid_at para los talonarios y los boletos.
+2018-02-08 13:45:05 -0300
+
+2018-02-08 14:07:00 -0300
+- Funciones para calcular la cantidad de boletos vendidos y los boletos pagados de un talonario.
+- Funciones para calcular la cantidad de boletos y talonarios pagados por un vendedor a la institución.
+- Se muestra la cantidad de tickets y talonarios pagados al admin cuando abre un vendedor.
+- La información de un talonario se ve como tabla. Cuando un admin la ve ahora muestra los boletos vendidos y pagados.
+2018-02-08 14:28:06 -0300
+
+2018-02-08 17:33:02 -0300
+- Se agrega el botón ingresar pagos a la vista de los talonarios.
+- Los admins ven el listado de talonarios de un vendedor bajo sus datos.
+- Se crea el controlador de los pagos.
+- Se crea el formulario de los pagos en forma de tabla.
+- Cuando el admin presiona en ingresar pagos la pagina se recarga mostrando en la base el formulario de pago.
+2018-02-08 18:53:35 -0300
+
+
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:
 
