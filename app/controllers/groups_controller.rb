@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups, @admin_level = Group.select_groups_to_show(session[:admin_id])
   end
 
   # GET /groups/1

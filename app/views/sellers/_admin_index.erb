@@ -1,12 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-
 <table>
   <thead>
   <tr>
     <th>Nombre</th>
     <th>RUT</th>
     <th>Grupo</th>
+    <th>Boletos Vendidos</th>
+    <th>Boletos Pagados</th>
     <th></th>
   </tr>
   </thead>
@@ -17,15 +16,10 @@
       <td><%= seller.name %></td>
       <td><%= seller.rut %></td>
       <td><%= seller.group.name %></td>
+      <td><%= seller.tickets_sold %></td>
+      <td><%= seller.tickets_paid %></td>
       <td><%= button_to 'Mostrar', seller_path(seller.id) , method: :get %></td>#
-      <!--<td><#%= link_to 'Show', seller %></td>-->
-      <!--<td><#%= link_to 'Edit', edit_seller_path(seller) %></td>-->
-      <!--<td><#%= link_to 'Destroy', seller, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
     </tr>
   <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Seller', new_seller_path %>

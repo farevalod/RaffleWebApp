@@ -1,13 +1,12 @@
 
 <h1>Vendedores: </h1>
 
-<%case @admin.admin_level%>
+<%case @admin_level%>
   <%when 1 .. 2%>
-    <%= render 'books/super_admin_index' %>
+    <%= render 'sellers/super_admin_index' %>
   <%when 3 .. 4%>
-    <%= render 'books/admin_index' %>
+    <%= render 'sellers/admin_index' %>
 <%end%>
 
-<br>
 
 <%= link_to 'New Seller', new_seller_path %>

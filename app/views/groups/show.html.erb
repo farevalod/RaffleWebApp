@@ -1,16 +1,37 @@
-<p id="notice"><%= notice %></p>
+<h1>Grupo</h1>
+<table>
+  <tbody>
 
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
+    <tr>
+      <td><strong>Nombre:</strong></td>
+      <td><%= @group.name %></td>
+    </tr>
 
-<p>
-  <strong>Institution:</strong>
-  <%= @group.institution %>
-</p>
+    <tr>
+      <td><strong>Institución:</strong></td>
+      <td><%= @group.institution.name %></td>
+    </tr>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
+    <tr>
+      <td><strong>Cantidad de Vendedores:</strong></td>
+      <td><%= @group.sellers_quantity %></td>
+    </tr>
+
+    <tr>
+      <td><strong>Boletos Vendidos:</strong></td>
+      <td><%= @group.tickets_sold %></td>
+    </tr>
+
+    <tr>
+      <td><strong>Talonarios Completados:</strong></td>
+      <td><%= @group.books_sold %></td>
+    </tr>
+
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_group_path(@group) %>
 <%= link_to 'Back', groups_path %>
 
+<h1>Vendedores del Grupo</h1>
 <%= render 'sellers/admin_index' %>

@@ -130,7 +130,7 @@ de los `tickets`.
 2018-02-08 19:26:16 -0300
 - Intento de enviar el formulario del pago por un post a payment_path
 2018-02-08 19:59:52 -0300
----------------------------------------------------------------------------------
+
 2018-02-09 12:49:21 -0300
 - Al ingresar los pagos la pagina se recarga. Si hubo un error el espacio de pagos se sigue mostrando.
   Si se ingresó correctamente entonces no se vuelve a desplegar al recargar.
@@ -139,7 +139,7 @@ de los `tickets`.
 
 2018-02-09 14:27:21 -0300
 - Se agrega el agrega la fecha y hora a la que se paga un boleto.
-- Si el talonario queda totalmente vendido, se merca como vedido y se guarda la fecha hora en que ocurrió.
+- Si el talonario queda totalmente vendido, se merca como vendido y se guarda la fecha hora en que ocurrió.
 2018-02-09 14:44:15 -0300
 
 2018-02-09 16:13:22 -0300
@@ -149,7 +149,7 @@ de los `tickets`.
 2018-02-09 16:42:50 -0300
 
 2018-02-09 16:50:27 -0300
-- Se filtra la infomación de los talonarios que los admins pueden ver en la acción index
+- Se filtra la infomación de los talonarios que los admins pueden ver en la acción index.
 2018-02-09 17:25:16 -0300
 
 2018-02-09 17:35:37 -0300
@@ -157,6 +157,18 @@ de los `tickets`.
 - Se muestra la fecha de los talonarios vendidos para los admins.
 - Se crean los distintos archivos para indexar los vendedores.
 2018-02-09 18:04:55 -0300
+
+2018-02-09 18:20:59 -0300
+- Se filtran los datos de los vendedores que los admins pueden ver en el indice de vendedores.
+- Se calculan y se muestran la cantidad de tickets y talonarios vendidos encada grupo.
+- Los datos de los grupos se ponen dentro de una tabla para mejorar su aspecto.
+2018-02-09 19:04:06 -0300
+
+2018-02-09 19:27:38 -0300
+- En el show de un grupo se muestra la cantidad de vendedores.
+- Se limitan los grupos que el admin puede ver a solo los de su institución.
+- Se modifican los datos que se muestran en index de grupos para el administrador.
+- Se calculan y se muestran los siguientes datos de la institución: Cantidad de administradores, de grupos de venta, de vendedores, de boletos ventidos, de boletos pagados y de talonarios completados.
 
 
 -----------------------------------------------------------------------------------------------------------------------

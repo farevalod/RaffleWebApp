@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Groups</h1>
+<h1>Grupos:</h1>
 
-<%= render 'groups/admin_index' %>
+<%case @admin_level%>
+<%when 1 .. 2%>
+  <%= render 'groups/super_admin_index' %>
+<%when 3 .. 4%>
+  <%= render 'groups/admin_index' %>
+<%end%>
+
+<%= link_to 'New Group', new_group_path %>

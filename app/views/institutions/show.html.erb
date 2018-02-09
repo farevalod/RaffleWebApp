@@ -1,37 +1,87 @@
-<p id="notice"><%= notice %></p>
+<h1>Datos de la Rifa</h1>
+<table>
+  <tbody>
+  
+    <tr>
+      <td><strong>Nombre Institución:</strong></td>
+      <td><%= @institution.name %></td>
+    </tr>
+    
+    <tr>
+      <td><strong>Tickets por Talonario:</strong></td>
+      <td><%= @institution.tickets_per_book %></td>
+    </tr>
+    
+    <tr>
+      <td><strong>Talonarios por Vendedor:</strong></td>
+      <td><%= @institution.books_per_seller %></td>
+    </tr>
+    
+    <tr>
+      <td><strong>Fecha Sorteo:</strong></td>
+      <td><%= @institution.draw_date %></td>
+    </tr>
+    
+    <tr>
+      <td><strong>Precio Boleto:</strong></td>
+      <td><%= @institution.ticket_price %></td>
+    </tr>
+    
+    <tr>
+      <td><strong>Máximo de Talonarios por Vendedor:</strong></td>
+      <td><%= @institution.max_books_per_seller %></td>
+    </tr>
 
-<p>
-  <strong>Name:</strong>
-  <%= @institution.name %>
-</p>
+  </tbody>
+</table>
 
-<p>
-  <strong>Tickets per book:</strong>
-  <%= @institution.tickets_per_book %>
-</p>
+<table>
+  <tbody>
 
-<p>
-  <strong>Books per seller:</strong>
-  <%= @institution.books_per_seller %>
-</p>
+  <tr>
+    <td><strong>Cantidad de Administradores:</strong></td>
+    <td><%= @institution.admins_count %></td>
+  </tr>
 
-<p>
-  <strong>Draw date:</strong>
-  <%= @institution.draw_date %>
-</p>
+  <tr>
+    <td><strong>Cantidad de Grupos de Venta:</strong></td>
+    <td><%= @institution.groups_count %></td>
+  </tr>
 
-<p>
-  <strong>Ticket price:</strong>
-  <%= @institution.ticket_price %>
-</p>
+  </tbody>
+</table>
 
-<p>
-  <strong>Max books per seller:</strong>
-  <%= @institution.max_books_per_seller %>
-</p>
+<table>
+  <tbody>
 
-<%= link_to 'Edit', edit_institution_path(@institution) %> |
+  <tr>
+    <td><strong>Cantidad de Vendedores:</strong></td>
+    <td><%= @institution.sellers_quantity %></td>
+  </tr>
+
+  <tr>
+    <td><strong>Boletos Vendidos:</strong></td>
+    <td><%= @institution.tickets_sold %></td>
+  </tr>
+
+  <tr>
+    <td><strong>Boletos Pagados:</strong></td>
+    <td><%= @institution.tickets_paid %></td>
+  </tr>
+
+  <tr>
+    <td><strong>Talonarios Completados:</strong></td>
+    <td><%= @institution.books_sold %></td>
+  </tr>
+
+
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_institution_path(@institution) %>
 <%= link_to 'Back', institutions_path %>
 
-
+<h1>Grupos de Vendedores</h1>
 <%= render 'groups/admin_index' %>
+
+<h1>Administradores</h1>

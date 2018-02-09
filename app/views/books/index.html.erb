@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Talonarios:</h1>
 
 <%case @num%>
@@ -8,7 +6,7 @@
   <%when 2%>
     <%= render 'books/admin_index' %>
   <%when 3%>
-    <%= render 'books/_seller_index' %>
+    <%= render 'books/seller_index' %>
 <%end%>
 
   <br>
