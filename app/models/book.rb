@@ -19,15 +19,18 @@ class Book < ApplicationRecord
     if admin
       case admin.admin_level
         when 1 .. 2
+          num = 1
           books = Book.all
         when 3 .. 4
+          num = 2
           books = Book.where(institution_id: admin.institution.id)
       end
     else
+      num = 3
       books = Book.where(seller_id: user_id)
       # Cuando no hay ni admin ni user esta cubierto por el before_action: authorize
     end
-    books
+    return books , num
   end
 
   def tickets_sold

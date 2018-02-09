@@ -19,8 +19,8 @@ ADMINISTRADOR DE INSTITUCIÓN
                         ingresar los pagos.
         + Crear:    Se crean automáticamente al crear un vendedor. Si un vendedor suepera la cantidad máxima de
                         talonarios puede solicitar más, pero cada talonario extra debe ser explícitamente aceptado por
-                        un adminstrador de institución. (Con un click para evitar burocracia)
-        - Editar:   Puede modificar la cantidad de boletos pagados de un talonario.
+                        un adminstrador de institución. (Con un click para evitar burocracia)                           --> Incompleto, parte pendiente
+        + Editar:   Puede modificar la cantidad de boletos pagados de un talonario.
         - Destruir: NO PUEDE. Salvo solicitud justificada a un admin de aplicación.
 
     * Sellers:

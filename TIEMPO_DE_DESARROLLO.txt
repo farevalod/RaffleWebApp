@@ -127,6 +127,37 @@ de los `tickets`.
 - Cuando el admin presiona en ingresar pagos la pagina se recarga mostrando en la base el formulario de pago.
 2018-02-08 18:53:35 -0300
 
+2018-02-08 19:26:16 -0300
+- Intento de enviar el formulario del pago por un post a payment_path
+2018-02-08 19:59:52 -0300
+---------------------------------------------------------------------------------
+2018-02-09 12:49:21 -0300
+- Al ingresar los pagos la pagina se recarga. Si hubo un error el espacio de pagos se sigue mostrando.
+  Si se ingresó correctamente entonces no se vuelve a desplegar al recargar.
+- Logica de los pagos: Se modifica la cantidad de boletos vendidos solicitados.
+2018-02-09 14:12:29 -0300
+
+2018-02-09 14:27:21 -0300
+- Se agrega el agrega la fecha y hora a la que se paga un boleto.
+- Si el talonario queda totalmente vendido, se merca como vedido y se guarda la fecha hora en que ocurrió.
+2018-02-09 14:44:15 -0300
+
+2018-02-09 16:13:22 -0300
+- Se implementó que cuando el talonario ya fue completamente pagado se informa al usuario y no se permite seguir
+  ingresando boletos pagados.
+- Solo se muestran al admin los vendedores de su institución cuando usa la acción index.
+2018-02-09 16:42:50 -0300
+
+2018-02-09 16:50:27 -0300
+- Se filtra la infomación de los talonarios que los admins pueden ver en la acción index
+2018-02-09 17:25:16 -0300
+
+2018-02-09 17:35:37 -0300
+- Se crea la columna sold_at para los tickets y los talonarios.
+- Se muestra la fecha de los talonarios vendidos para los admins.
+- Se crean los distintos archivos para indexar los vendedores.
+2018-02-09 18:04:55 -0300
+
 
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:
@@ -152,3 +183,6 @@ Proximos Pasos:
 - Implementar opción de que el vendedor pueda solicitar la modificación de algún dato de un boleto, o de informar errores.
   También puede solicitar la eliminación en caso de algún error. Esto último debe ser aceptado pimero por el administrador
   de la institución.
+
+ - Ajax para el formulario de pagos en la vista de los talonarios para los administradores.
+ - Se debe evitar que un usario cambaido un numero en la url pueda ver los boletos o talonarios de otros

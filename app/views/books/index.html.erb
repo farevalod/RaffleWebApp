@@ -1,9 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Books</h1>
+<h1>Talonarios:</h1>
 
-<%= render 'books/index' %>
+<%case @num%>
+  <%when 1%>
+    <%= render 'books/super_admin_index' %>
+  <%when 2%>
+    <%= render 'books/admin_index' %>
+  <%when 3%>
+    <%= render 'books/_seller_index' %>
+<%end%>
 
-<br>
+  <br>
 
 <%= link_to 'New Book', new_book_path %>

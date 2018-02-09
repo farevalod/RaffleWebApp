@@ -70,4 +70,17 @@ class Seller < ApplicationRecord
     Book.where(seller_id: id, paid: true).count
   end
 
+  def self.select_sellers_to_show(admin_id)
+    admin = Admin.find_by(id: admin_id)
+    if admin
+      case admin.admin_level
+        when 1 .. 2
+          sellers = Seller.all
+        when 3 .. 4
+          sellers = Seller.where(institution_id: admin.institution.id)
+      end
+    end
+    return sellers, admin.admin_level
+  end
+
 end

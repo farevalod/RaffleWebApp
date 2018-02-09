@@ -1,7 +1,6 @@
-<p id="notice"><%= notice %></p>
 
 <% if @admin %>
-  <h1>Datos del vendedor</h1>
+  <h1>Datos del Vendedor</h1>
   <%= render 'sellers/admin_show' %>
 <% else %>
 
@@ -31,7 +30,7 @@
 
         <tr>
           <td><strong>Boletos Vendidos:</strong></td>
-          <td><%= @tickets_sold%></td>
+          <td><%= @seller.tickets_sold%></td>
         </tr>
 
         <tr>
@@ -52,8 +51,8 @@
 <%= link_to 'Back', sellers_path %>
 
 <% if @admin %>
-  <h2>Talonarios del Vendedor: </h2>
-  <%= render 'books/index' %>
+  <h1>Talonarios del Vendedor: </h1>
+  <%= render 'books/admin_index' %>
 <% end %>
 
 

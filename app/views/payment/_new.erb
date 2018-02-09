@@ -1,7 +1,7 @@
 <div class="form">
 
-  <%= form_tag do %>
-
+  <%= form_tag(payment_path) do %>
+    <%= hidden_field_tag :book_id , @book.id %>
     <table>
       <thead>
       <th colspan="3"><legend>Ingresa la cantidad de tickets a pagar:</legend></th>
@@ -15,7 +15,7 @@
       </tr>
       <tr>
         <td></td>
-        <td><%= submit_tag "Ingresar" %></td>
+        <td><%= submit_tag 'Ingresar', data: { confirm: 'La cantidad es correcta? Este paso no se puede revertir.' } %></td>
       </tr>
 
       </tbody>
