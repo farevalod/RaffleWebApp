@@ -169,6 +169,20 @@ de los `tickets`.
 - Se limitan los grupos que el admin puede ver a solo los de su institución.
 - Se modifican los datos que se muestran en index de grupos para el administrador.
 - Se calculan y se muestran los siguientes datos de la institución: Cantidad de administradores, de grupos de venta, de vendedores, de boletos ventidos, de boletos pagados y de talonarios completados.
+2018-02-09 20:17:22 -0300
+
+2018-02-09 20:23:59 -0300
+- Se crea una función que evita que los admins de isntitución puedan ver o modificar otras instituciones.
+- Se crean los archivos html para admis y super admins para show e index del controlador admin.
+- Se muestra el listado de admins en el show de la institución.
+- Se formatea el show de los admins con tablas.
+2018-02-09 21:10:54 -0300
+
+2018-02-09 21:25:26 -0300
+- Cuando un admin ve el index de los admins solo ve a los de su institución.
+2018-02-09 21:36:40 -0300
+
+
 
 
 -----------------------------------------------------------------------------------------------------------------------

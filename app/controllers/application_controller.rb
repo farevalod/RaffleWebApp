@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
 
   def authorize_admin
     unless Admin.find_by(id: session[:admin_id])
-      redirect_to main_page_url, notice: "Necesitas permisos de administrador de institución"
+      redirect_to seller_url(session[:user_id]), notice: "Necesitas permisos de administrador de institución"
+      # El caso en el que no es un usuario esta cubiero por authorize
     end
   end
 
@@ -24,6 +25,15 @@ class ApplicationController < ActionController::Base
         redirect_to institution_url(admin.institution.id), notice: "Los administrdores de instituciones no poseen boletos"
       end
     end
+  end
+
+  def authorize_super_admin
+    admin = Admin.find_by(id: session[:admin_id])
+    unless admin.admin_level == 1 or admin.admin_level == 2
+      redirect_to institution_url(admin.institution.id)
+    end
+    # El caso en que no es un admin esta cubierto por authorize_admin
+    # Si no hay sesión iniciada está cubierto por authorize
   end
 
   def set_last_page_visited

@@ -1,0 +1,29 @@
+
+<table>
+  <tbody>
+  
+  <tr>
+    <td><strong>Nombre:</strong></td>
+    <td><%= @admin.name %></td>
+  </tr>
+  
+  <tr>
+    <td><strong>Teléfono:</strong></td>
+    <td><%= @admin.phone_number %></td>
+  </tr>
+  
+  <tr>
+    <td><strong>Email:</strong></td>
+    <td><%= @admin.email %></td>
+  </tr>
+  
+  <tr>
+    <td><strong>Nivel:</strong></td>
+    <td><%= @admin.text_admin_level %></td>
+  </tr>
+
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_admin_path(@admin) %> |
+<%= link_to 'Back', admins_path %>

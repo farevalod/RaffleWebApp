@@ -1,6 +1,7 @@
 class InstitutionsController < ApplicationController
   before_action :set_institution, only: [:show, :edit, :update, :destroy]
   before_action :authorize_admin
+  before_action :authorize_super_admin, except: :show
 
   # GET /institutions
   # GET /institutions.json
@@ -12,6 +13,7 @@ class InstitutionsController < ApplicationController
   # GET /institutions/1.json
   def show
     @groups = Group.where(institution_id: params[:id])
+    @admins = Admin.where(institution_id: params[:id])
   end
 
   # GET /institutions/new

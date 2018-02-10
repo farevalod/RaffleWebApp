@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User name</th>
+      <th>Phone number</th>
+      <th>Email</th>
+      <th>Confirm token</th>
+      <th>Email confirmed</th>
+      <th>Institution</th>
+      <th>Admin level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admins.each do |admin| %>
+      <tr>
+        <td><%= admin.name %></td>
+        <td><%= admin.user_name %></td>
+        <td><%= admin.phone_number %></td>
+        <td><%= admin.email %></td>
+        <td><%= admin.confirm_token %></td>
+        <td><%= admin.email_confirmed %></td>
+        <td><%= admin.institution %></td>
+        <td><%= admin.admin_level %></td>
+        <td><%= link_to 'Show', admin %></td>
+        <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
+        <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Admin', new_admin_path %>

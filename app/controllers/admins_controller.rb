@@ -5,12 +5,13 @@ class AdminsController < ApplicationController
   # GET /admins
   # GET /admins.json
   def index
-    @admins = Admin.all
+    @admins, @num = Admin.select_admins_to_show(session[:admin_id])
   end
 
   # GET /admins/1
   # GET /admins/1.json
   def show
+    @admin_level = Admin.find(session[:admin_id]).admin_level
   end
 
   # GET /admins/new

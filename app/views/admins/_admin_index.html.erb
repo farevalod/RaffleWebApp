@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Nivel</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admins.each do |admin| %>
+      <tr>
+        <td><%= admin.name %></td>
+        <td><%= admin.text_admin_level %></td>
+        <td><%= button_to 'Mostrar', admin_path(admin.id) , method: :get %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Admin', new_admin_path %>
