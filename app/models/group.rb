@@ -36,6 +36,15 @@ class Group < ApplicationRecord
     return groups, admin.admin_level
   end
 
-
+  def self.set_corresponding_institution(group_id, admin_id)
+    admin = Admin.find(admin_id)
+    group = self.find(group_id)
+    # El caso en que no es admin está cubierto por authorize_admin
+    # El caso en que no es usuario esta cubierto por authorize
+    ad_lv = admin.admin_level
+    if ad_lv.between?(1, 2) or (ad_lv.between?(3, 4) and admin.institution.groups.include?(group))
+      self.find(group_id)
+    end
+  end
 
 end

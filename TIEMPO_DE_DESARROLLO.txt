@@ -188,9 +188,23 @@ de los `tickets`.
 
 2018-02-10 12:42:05 -0300
 - Se implementa la restricción para que un administrador no pueda ver instituciones distintas a las suya.
-- Cuando un super_admin intenta ingresar a una institución inexistente, se le informa y es redirigido a su institución.
+- Cuando un super_admin intenta ingresar a una institución inexistente, se le informa y es redirigido a su institución. (Corregir a futuro, pq no tienen institución)
 2018-02-10 13:06:00 -0300
 
+2018-02-10 13:24:18 -0300
+- Los admins solo pueden ver los grupos de su institución aunque cambien el número en la URL
+- Si un admin ingresa un id de grupo no válido, será redirigido al index de los grupos.
+- Se modifica el modelo y el controlador de los vendedores para que solo los usuarios que correspondan puedan acceder
+  a las acciones que utilizan el método set_seller
+- Se crea un rescue para redirigir al usuario si ingresa una id inexistete.
+2018-02-10 14:03:30 -0300
+
+A vuelta de vacaciones:
+- Repetir lo último echo para los talonarios y para los boletos.
+- Hacer que el admin 'cree' los demás elementos
+- Ordenar los permisos y la información que se muestra de los vendedores
+- Estructurar los super usuarios
+- Añadir los mailers: compradores, admins, vendedores.
 
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:

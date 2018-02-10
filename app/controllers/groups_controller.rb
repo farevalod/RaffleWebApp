@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :authorize_admin
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_group
 
   # GET /groups
   # GET /groups.json
@@ -64,13 +65,24 @@ class GroupsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_group
-      @group = Group.find(params[:id])
+  # Use callbacks to share common setup or constraints between actions.
+  def set_group
+    @group = Group.set_corresponding_institution(params[:id], session[:admin_id])
+    if @group
+      @group
+    else
+      invalid_group
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def group_params
-      params.require(:group).permit(:name, :institution_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def group_params
+    params.require(:group).permit(:name, :institution_id)
+  end
+
+  def invalid_group
+    logger.error "Intento de acceder a un grupo(#{params[:id]}) no válido"
+    redirect_to groups_url, notice: 'Grupo no válido!'
+  end
+  
 end

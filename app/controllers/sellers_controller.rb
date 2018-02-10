@@ -2,6 +2,7 @@ class SellersController < ApplicationController
   before_action :set_seller, only: [:show, :edit, :update, :destroy]
   before_action :authorize_admin
   skip_before_action :authorize_admin, only: :show
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_seller
 
   # GET /sellers
   # GET /sellers.json
@@ -73,7 +74,12 @@ class SellersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_seller
-    @seller = Seller.find(params[:id])
+    @seller = Seller.set_corresponding_seller(params[:id], session[:admin_id], session[:user_id])
+    if @seller
+      @seller
+    else
+      invalid_seller
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -81,5 +87,9 @@ class SellersController < ApplicationController
     params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id, :institution_id)
   end
 
+  def invalid_seller
+    logger.error "Intento de acceder a un vendedor(#{params[:id]}) no válido"
+    redirect_to sellers_url, notice: 'Vendedor no válido!'
+  end
 
 end
