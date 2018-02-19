@@ -30,7 +30,25 @@ class Book < ApplicationRecord
       books = Book.where(seller_id: user_id)
       # Cuando no hay ni admin ni user esta cubierto por el before_action: authorize
     end
-    return books , num
+    [books, num]
+  end
+
+  def self.set_corresponding_book(book_id, admin_id, user_id)
+    # El caso en que no es usuario está cubierto por authorize
+    admin = Admin.find_by(id: admin_id)
+    book = self.find(book_id)
+
+    if admin
+      ad_lv = admin.admin_level
+      if ad_lv.between?(1, 2) or (ad_lv.between?(3, 4) and admin.institution.books.include?(book))
+        return book
+      end
+    else
+      seller = Seller.find_by(id: user_id)
+      if seller.books.include?(book)
+        return book
+      end
+    end
   end
 
   def tickets_sold

@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_book
 
   # GET /books
   # GET /books.json
@@ -73,11 +74,22 @@ class BooksController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_book
-    @book = Book.find(params[:id])
+    @book = Book.set_corresponding_book(params[:id], session[:admin_id], session[:user_id])
+    if @book
+      @book
+    else
+      invalid_book
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def book_params
     params.require(:book).permit(:num_in_institution, :seller_id)
   end
+
+  def invalid_book
+    logger.error "Intento de acceder a un talonario(#{params[:id]}) no válido"
+    redirect_to books_url, notice: 'Talonario no válido!'
+  end
+
 end

@@ -80,7 +80,7 @@ class Seller < ApplicationRecord
           sellers = Seller.where(institution_id: admin.institution.id)
       end
     end
-    return sellers, admin.admin_level
+     [sellers, admin.admin_level]
   end
 
   def self.set_corresponding_seller(seller_id, admin_id, user_id)
@@ -93,15 +93,14 @@ class Seller < ApplicationRecord
     puts admin.admin_level
     puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
 
-
     if admin
       ad_lv = admin.admin_level
       if ad_lv.between?(1, 2) or (ad_lv.between?(3, 4) and admin.institution.sellers.include?(seller))
-        return self.find(seller_id)
+        return seller
       end
     else
       if user_id == seller_id
-        return self.find(seller_id)
+        return seller
       end
     end
   end
