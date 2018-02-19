@@ -201,18 +201,47 @@ de los `tickets`.
 
 2018-02-19 12:23:07 -0300
 - Se crea el método set_corresponding_book en el modelo de los talonarios.
-- Se crea el método invalid_book en el controlador de los talonarios para redirigir intentos de acceder a talonatios
+- Se crea el método invalid_book en el controlador de los talonarios para redirigir intentos de acceder a talonarios
   inválidos
 - Se crea modifica el método set_book del controlador de los talonarios para llamar al metodo creado en el modelo. En
   los casos que corresponde se llama a invalid_book.
 - Se crea un rescue para llamar a invalid_book si el usuario ingresa un id inexistente.
 2018-02-19 12:47:17 -0300
 
+2018-02-19 12:55:32 -0300
+- Se crea el método set_corresponding_ticket en el modelo de los boletos.
+- Se crea el método invalid_ticket en el controlador de los boletos para redirigir intentos de acceder a boletos
+  inválidos
+- Se modifica el método set_ticket del controlador de los boletos para llamar al método creado en el modelo. En
+  los casos que corresponde se llama a invalid_ticket.
+- Se crea un rescue para llamar a invalid_ticket si el usuario ingresa un id inexistente.
+2018-02-19 13:19:09 -0300
+
+2018-02-19 13:29:24 -0300
+- Se modifica el index para admins de los administradores, ahora muestra un botón para agregar admins.
+- Se modifica el new de los admins. Se muestra como una tabla y se modifican los datos solicitados.
+2018-02-19 13:57:00 -0300
+
+2018-02-19 14:03:03 -0300
+- Se agrega la columna rut a la tabla admins.
+- Se elimina el metodo admin_params y se crean create_admin_params y update_admin_params.
+- Se agregan en id de institución y la contraseña a los parametros entregados por el usuario para crear un admin.
+2018-02-19 14:32:27 -0300
+
+2018-02-19 15:35:40 -0300
+- Se crea el metodo remove_accent_marks para eliminar las tildes de los nombres de usuario en application_controller
+- En application_controller se crean los métodos remove_non_alnum para quitar todos los carácteres que no son
+  alfanuméricos y remove_non_numeric para eliminar todos los caracteres no numéricos.
+2018-02-19 16:24:32 -0300
+
+2018-02-19 16:30:25 -0300
+- En create del controlados de los admins automáticamente se genera el nombre de usuario y el admin_level.
 
 
 ---
+-Falta evitar que un admin pueda ver admins de otras instituciones.
+
 A vuelta de vacaciones:
-- Repetir lo último echo para los talonarios y para los boletos.
 - Hacer que el admin 'cree' los demás elementos
 - Ordenar los permisos y la información que se muestra de los vendedores
 - Estructurar los super usuarios

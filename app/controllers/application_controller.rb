@@ -40,4 +40,17 @@ class ApplicationController < ActionController::Base
     session[:previous_page] = "#{request.original_url}"
   end
 
+  def remove_accent_marks(prhase)
+    prhase.tr( "ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšȘșſŢţŤťŦŧȚțÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž", "AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSsSssTtTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz")
+  end
+
+  def remove_non_alnum(phrase)
+    #Permite caráctteres normales y con tilde latina (las demás tildes son eliminadas)
+    phrase.gsub(/[^0-9a-záéíóúÁÉÍÓÚ\\s]/i, '')
+  end
+
+  def remove_non_numeric(phrase)
+    phrase.gsub(/[^0-9]/i, '')
+  end
+
 end

@@ -11,57 +11,34 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :admin_name %>
-  </div>
+  <table>
+    <tbody>
 
-  <div class="field">
-    <%= form.label :user_name %>
-    <%= form.text_field :user_name, id: :admin_user_name %>
-  </div>
+      <tr>
+        <td><%= form.label :Nombre %></td>
+        <td><%= form.text_field :name, id: :admin_name %></td>
+      </tr>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, id: :admin_password %>
-  </div>
+      <tr>
+        <td><%= form.label :RUT %></td>
+        <td><%= form.text_field :rut, id: :admin_rut %></td>
+      </tr>
 
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, id: :admin_password_confirmation %>
-  </div>
+      <tr>
+        <td><%= form.label :Email %></td>
+        <td><%= form.text_field :email, id: :admin_email %></td>
+      </tr>
 
-  <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number, id: :admin_phone_number %>
-  </div>
+      <tr>
+        <td><%= form.label 'Número de Teléfono' %></td>
+        <td><%= form.text_field :phone_number, id: :admin_phone_number %></td>
+      </tr>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :admin_email %>
-  </div>
+      <tr>
+        <td colspan="2"><%= form.submit "Crear" %></td>
+      </tr>
 
-  <div class="field">
-    <%= form.label :confirm_token %>
-    <%= form.text_field :confirm_token, id: :admin_confirm_token %>
-  </div>
+    </tbody>
+  </table>
 
-  <div class="field">
-    <%= form.label :email_confirmed %>
-    <%= form.check_box :email_confirmed, id: :admin_email_confirmed %>
-  </div>
-
-  <div class="field">
-    <%= form.label :institution_id %>
-    <%= form.text_field :institution_id, id: :admin_institution_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin_level %>
-    <%= form.number_field :admin_level, id: :admin_admin_level %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

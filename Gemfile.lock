@@ -172,6 +172,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  i18n
   jbuilder (~> 2.5)
   puma (~> 3.7)
   rails (~> 5.1.4)

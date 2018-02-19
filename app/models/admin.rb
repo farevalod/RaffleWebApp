@@ -4,9 +4,9 @@ class Admin < ApplicationRecord
 
   def text_admin_level
     if admin_level == 3
-      return "Primario"
-    elif admin_level == 4
-      return "Secundario"
+      "Primario"
+    elsif admin_level == 4
+      "Secundario"
     end
   end
   
@@ -24,4 +24,6 @@ class Admin < ApplicationRecord
       return admins, num
     end
   end
+
+
 end

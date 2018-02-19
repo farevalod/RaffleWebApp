@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
   before_action :authorize_seller_s_admin
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_ticket
 
   # GET /tickets
   # GET /tickets.json
@@ -72,14 +73,24 @@ class TicketsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ticket
-      @ticket = Ticket.find(params[:id])
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ticket
+    @ticket = Ticket.set_corresponding_ticket(params[:id], session[:admin_id], session[:user_id])
+    if @ticket
+      @ticket
+    else
+      invalid_ticket
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ticket_params
-      params.require(:ticket).permit(:name, :email, :phone_number, :num_in_book, :book_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ticket_params
+    params.require(:ticket).permit(:name, :email, :phone_number, :num_in_book, :book_id)
+  end
+
+  def invalid_ticket
+    logger.error "Intento de acceder a un boleto(#{params[:id]}) no válido"
+    redirect_to books_url, notice: 'Boleto no válido!'
+  end
 
 end
