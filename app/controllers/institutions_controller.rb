@@ -84,7 +84,6 @@ class InstitutionsController < ApplicationController
   end
 
   def invalid_institution
-    admin = Admin.find(session[:admin_id])
     logger.error "Intento de acceder a una institución(#{params[:id]}) no válida"
     redirect_to institution_url(session[:admin_id]), notice: 'Institución no válida!'
   end

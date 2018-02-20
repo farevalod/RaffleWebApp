@@ -19,6 +19,12 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
 
+  resources :admins do
+    member do
+      get :confirm_email
+    end
+  end
+
   resources :admins
   resources :sellers
   resources :tickets

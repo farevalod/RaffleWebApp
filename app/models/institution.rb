@@ -20,11 +20,11 @@ class Institution < ApplicationRecord
     end
     sold
   end
-  
+
   def sellers_quantity
     Seller.where(institution_id: id).count
   end
-  
+
   def tickets_paid
     paid = 0
     Seller.where(institution_id: id).each do |seller|
@@ -46,7 +46,7 @@ class Institution < ApplicationRecord
     # El caso en que no es admin está cubierto por authorize_admin
     # El caso en que no es usuario esta cubierto por authorize
     ad_lv = admin.admin_level
-    if ad_lv.between?(1, 2) or ( ad_lv.between?(3, 4) and (admin.institution_id == institution_id.to_i) )
+    if ad_lv.between?(1, 2) or (ad_lv.between?(3, 4) and (admin.institution_id == institution_id.to_i) )
       self.find(institution_id)
     end
 

@@ -1,5 +1,6 @@
 class Admin < ApplicationRecord
   belongs_to :institution
+  before_create :confirmation_token
   has_secure_password
 
   def text_admin_level
@@ -9,21 +10,53 @@ class Admin < ApplicationRecord
       "Secundario"
     end
   end
-  
+
   def self.select_admins_to_show(admin_id)
     admin = Admin.find_by(id: admin_id)
     if admin
       case admin.admin_level
+        # Si es super admin ve todos los admins:
         when 1 .. 2
           num = 1
           admins = Admin.all
+        # Si es admin de institución solo ve los admins de la institución:
         when 3 .. 4
           num = 2
           admins = Admin.where(institution_id: admin.institution.id)
+        else
+          # Para evitar posibles variablse no inicializadas. Aunque nunca debería entrar acá.
+          admins = nil
+          num = nil
       end
-      return admins, num
+      [admins, num]
     end
   end
 
+  def self.set_corresponding_admin(admin_id_param, admin_id)
+    # El caso en que no es admin está cubierto por authorize_admin
+    # El caso en que no es usuario esta cubierto por authorize
+    admin = find(admin_id)
+    admin_2 = find(admin_id_param)
+    ad_lv = admin.admin_level
+    if ad_lv.between?(1, 2)
+      admin_2
+    elsif admin.institution.admins.include?(admin_2)
+      admin_2
+    end
+  end
+
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!
+  end
+
+  private
+
+  def confirmation_token
+    if self.confirm_token.blank?
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    end
+  end
 
 end

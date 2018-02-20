@@ -1,0 +1,29 @@
+Este mensaje es generado automáticamente
+por un Software de Gestión de Rifas.
+Cualquier error favor informar a través de este mismo email.
+------------------------------------------------------------
+
+Hola <%= @new_admin.name %>,
+
+La institución <%= @old_admin.institution.name %> está realizando
+una rifa y el administrador de esta, <%= @old_admin.name%> te ha
+incorporado como adminstrador.
+
+Por favor haz click en el link a continuación para confimar tu email
+e iniciar sesión.
+
+Tus credendiales son:
+  Nombre de Usuario: <%= @new_admin.user_name %>
+  Contraseña: Los últimos 4 dígitos de tu RUT antes del guión.
+
+Por ejemplo, si tu RUT es: 12.345.678-9. Entonces tu contraseña es: 5678
+
+<%= confirm_email_admin_url(@new_admin.confirm_token) %>
+
+Saludos.
+
+------------------------------------------------------------
+Si no estás en conocimiento de esta actividad ponte en contacto con
+el administrador mencionado.
+Si desconoces esta institución o al administrador, te agradeceríamos
+nos lo informaras para enmendar el error.

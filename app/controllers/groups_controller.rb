@@ -70,7 +70,7 @@ class GroupsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_group
-    @group = Group.set_corresponding_institution(params[:id], session[:admin_id])
+    @group = Group.set_corresponding_group(params[:id], session[:admin_id])
     if @group
       @group
     else
