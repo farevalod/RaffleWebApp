@@ -2,12 +2,14 @@ class SellersController < ApplicationController
   before_action :set_seller, only: [:show, :edit, :update, :destroy]
   before_action :authorize_admin
   skip_before_action :authorize_admin, only: :show
+  before_action :validate_group_to_create, only: [:new, :create]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_seller
 
   # GET /sellers
   # GET /sellers.json
   def index
     @sellers, @admin_level = Seller.select_sellers_to_show(session[:admin_id])
+    @group_id = nil
   end
 
   # GET /sellers/1
@@ -113,6 +115,24 @@ class SellersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def update_seller_params
     params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id, :institution_id)
+  end
+
+  def validate_group_to_create
+    group_id = params[:group_id]
+    admin = Admin.find_by(id: session[:admin_id])
+    if group_id
+      # Si el grupo no pertenece a la institución:
+      unless admin.institution.groups.include?(Group.find_by(id: group_id))
+        logger.error "Intento de crear a un vendedor en un grupo(#{params[:group_id]}) no válido"
+        redirect_to groups_url, notice: 'Grupo no válido!'
+      end
+    # Si se intenta crear un vendedor sin grupo:
+    else
+      logger.error "Intento de crear a un vendedor sin grupo"
+      redirect_to groups_url, notice: 'Para agregar un vendedor debes seleccionar un grupo.'
+    end
+
+
   end
 
 end

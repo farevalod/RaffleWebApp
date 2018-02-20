@@ -10,7 +10,7 @@ class TicketsController < ApplicationController
       @tickets = Ticket.where(book_id: params[:book_id])
     else
       # @tickets = Ticket.all
-      redirect_to books_url, notice: "Select a book"
+      redirect_to books_url, notice: "Debes seleccionar un talonario"
     end
   end
 

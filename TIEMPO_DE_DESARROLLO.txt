@@ -1,4 +1,5 @@
 ﻿# TIEMPO DE DESARROLLO DE APLICACIÓN WEB PARA RIFAS
+*** -> commit en git
 
 2018-02-03 17:46:52 -0300
 - Andamiajes y relaciones de instituciones, grupos, vendedores, talonarios y tickets.
@@ -236,10 +237,10 @@ de los `tickets`.
 
 2018-02-19 16:30:25 -0300
 - En create del controlados de los admins automáticamente se genera el nombre de usuario y el admin_level.
-***
+*** (Desde aquí empecé a usar este símbolo para los commit de git)
 - Se añade el botón para crear un nuevo grupo. Se modifica el new.html de los grupos. Ahora la info está como tabla.
 - Hay un error, cuando un admin presiona en el boton de mostrar de un grupo aparece el mensaje: "Institución no válida"
-  aunque de todos modos se muestra la pagina del grupo correspondiente (no es redirigido)
+  aunque de todos modos se muestra la pagina del grupo correspondiente (no es redirigido).
 2018-02-19 17:18:43 -0300
 
 2018-02-19 17:40:19 -0300
@@ -255,15 +256,29 @@ de los `tickets`.
 - Se crea el código que genera todos los datos del vendedor que deben crearse automáticamente.
 2018-02-19 18:55:50 -0300
 
+***
 2018-02-20 12:20:15 -0300
--
+- Se detecta un error: Cuando uno abre un vendedor del listado de vendedores y depués vuelve atrás, se muestra el
+  mensaje Vendedor no válido!. El mensaje de talonaro no válido también se muestra en momento inapropiados.
+- Se detecta una vulnerabilidad, el usuario puede crear un vendedor que pertenezca a su isntitución, pero pertenezca al
+  grupo de otra institución (cambiando el group_id en la URL).
+- Se creó la función validate_group_to_create en seller_controller para eliminar la vulnerabilidad de poder crear
+  vendedores sin grupo o vendedores en grupos de otras instituciones.
+2018-02-20 13:23:46 -0300
+
+2018-02-20 13:30:03 -0300
+- Se robusteció la forma en que se entrega el group id para crear un vendedor. Ya no los busca en el listado de
+  vendedoes que se muestran, sino que ahora se entrega a través de la variable @group_id a trevés de la acción index de
+  los vendedores y la acción show de los grupos.
+- Se evita que el botón para crear vendedores aparezca en el index de los vendedores (@group_id = nil) y solo es visible
+  desde el show de los grupos.
+2018-02-20 13:56:28 -0300
+***
 
 ---
 
 MARTES 20:
--Falta evitar que un admin pueda ver admins de otras instituciones.
-- MOdificar la forma en que se obtiene el group_id cuando se crea un vendedor. Usar una forma más robusta que no solo
-  funcione con el botón de crear.
+- Falta evitar que un admin pueda ver admins de otras instituciones.
 - Iniciar con la creación de los confirm_token y de los mailers.
 
 A vuelta de vacaciones:

@@ -12,7 +12,6 @@
 
   <tbody>
   <% @sellers.each do |seller| %>
-    <% @group_id = seller.group_id %>
     <tr>
       <td><%= seller.name %></td>
       <td><%= seller.rut %></td>
@@ -23,9 +22,11 @@
     </tr>
   <% end %>
 
-  <tr>
-    <td colspan="6"><%= button_to 'Agregar Vendedor', new_seller_path ,  params:{group_id: @group_id}, method: :get %></td>
-  </tr>
+  <% if @group_id %>
+    <tr>
+      <td colspan="6"><%= button_to 'Agregar Vendedor', new_seller_path ,  params:{group_id: @group_id}, method: :get %></td>
+    </tr>
+  <% end %>
 
   </tbody>
 </table>
