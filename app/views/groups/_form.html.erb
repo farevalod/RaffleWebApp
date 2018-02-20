@@ -11,17 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :group_name %>
-  </div>
 
-  <div class="field">
-    <%= form.label :institution_id %>
-    <%= form.text_field :institution_id, id: :group_institution_id %>
-  </div>
+  <!--<div class="field">-->
+    <!--<#%= form.label :name %>-->
+    <!--<#%= form.text_field :name, id: :group_name %>-->
+  <!--</div>-->
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <!--<div class="field">-->
+    <!--<#%= form.label :institution_id %>-->
+    <!--<#%= form.text_field :institution_id, id: :group_institution_id %>-->
+  <!--</div>  -->
+
+  <table>
+    <tbody>
+
+        <tr>
+          <td><%= form.label :name %></td>
+          <td><%= form.text_field :name, id: :group_name %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2"><%= form.submit "Crear" %></td>
+        </tr>
+
+    </tbody>
+  </table>
+
 <% end %>

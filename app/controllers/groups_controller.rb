@@ -27,11 +27,13 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(group_params)
+    parameters = group_params
+    parameters[:institution_id] = Admin.find_by(id: session[:admin_id]).institution_id
+    @group = Group.new(parameters)
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to @group, notice: "Se creó el grupo #{parameters[:name]}" }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
@@ -77,7 +79,7 @@ class GroupsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def group_params
-    params.require(:group).permit(:name, :institution_id)
+    params.require(:group).permit(:name)
   end
 
   def invalid_group

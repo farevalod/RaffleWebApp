@@ -36,9 +36,6 @@ class AdminsController < ApplicationController
     create_params[:admin_level] = 4
 
     @admin = Admin.new(create_params)
-    puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    puts create_admin_params
-    puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     respond_to do |format|
       if @admin.save
         format.html { redirect_to @admin, notice: 'Se ha creado el nuevo administrador!' }

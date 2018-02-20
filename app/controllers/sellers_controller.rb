@@ -20,6 +20,10 @@ class SellersController < ApplicationController
   # GET /sellers/new
   def new
     @seller = Seller.new
+    @group_id = params[:group_id]
+    puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+    puts 'GROUP ID: ' + @group_id
+    puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
   end
 
   # GET /sellers/1/edit
@@ -29,12 +33,21 @@ class SellersController < ApplicationController
   # POST /sellers
   # POST /sellers.json
   def create
-    @seller = Seller.new(seller_params)
+    parameters = create_seller_params
+    parameters[:rut] = rut_formatter(parameters[:rut])
+    parameters[:user_name] = remove_non_alnum(remove_accent_marks(parameters[:name])).downcase
+    parameters[:password] = parameters[:rut].tr('.','').tr('-','')[-5..-2]
+    parameters[:num_of_logins] = 0
+    parameters[:institution_id] = Admin.find(session[:admin_id]).institution_id
+    parameters[:group_id] = params[:group_id]
+
+
+    @seller = Seller.new(parameters)
 
     respond_to do |format|
       if @seller.save
         @seller.init_seller
-        format.html { redirect_to sellers_url, notice: 'Seller was successfully created.' }
+        format.html { redirect_to sellers_url, notice: "Se creó el vendedor #{parameters[:name]}!" }
         format.json { render :show, status: :created, location: @seller }
       else
         format.html { render :new }
@@ -47,7 +60,7 @@ class SellersController < ApplicationController
   # PATCH/PUT /sellers/1.json
   def update
     respond_to do |format|
-      if @seller.update(seller_params)
+      if @seller.update(update_seller_params)
         format.html { redirect_to @seller, notice: 'Seller was successfully updated.' }
         format.json { render :show, status: :ok, location: @seller }
       else
@@ -82,14 +95,24 @@ class SellersController < ApplicationController
     end
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def seller_params
-    params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id, :institution_id)
-  end
+  # # Never trust parameters from the scary internet, only allow the white list through.
+  # def seller_params
+  #   params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id, :institution_id)
+  # end
 
   def invalid_seller
     logger.error "Intento de acceder a un vendedor(#{params[:id]}) no válido"
     redirect_to sellers_url, notice: 'Vendedor no válido!'
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def create_seller_params
+    params.require(:seller).permit(:name, :rut, :group_id, :institution_id)
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def update_seller_params
+    params.require(:seller).permit(:name, :rut, :password, :password_confirmation, :email, :phone_number, :num_in_institution, :num_of_logins, :email_confirmed, :confirm_token, :group_id, :institution_id)
   end
 
 end

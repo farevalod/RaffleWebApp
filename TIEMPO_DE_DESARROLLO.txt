@@ -236,10 +236,35 @@ de los `tickets`.
 
 2018-02-19 16:30:25 -0300
 - En create del controlados de los admins automáticamente se genera el nombre de usuario y el admin_level.
+***
+- Se añade el botón para crear un nuevo grupo. Se modifica el new.html de los grupos. Ahora la info está como tabla.
+- Hay un error, cuando un admin presiona en el boton de mostrar de un grupo aparece el mensaje: "Institución no válida"
+  aunque de todos modos se muestra la pagina del grupo correspondiente (no es redirigido)
+2018-02-19 17:18:43 -0300
 
+2018-02-19 17:40:19 -0300
+- Cuando se crea un nuevo grupo, este recibe automáticamente el id de la institución del admin que lo creó.
+- El formulario para un nuevo vendedor se muestra como tabla solo con nombre y RUT.
+2018-02-19 18:10:56 -0300
+
+2018-02-19 18:18:06 -0300
+- Se crea rut_formatter en application_controller para dar un formato visualmente agradable a los RUTs.
+- Se modifica el boton para crear un vendedor y el formulario de creación de un vendedor para enviar el id del grupo al
+  que pertenecerá el usuario.
+- Se modifica la función create_seller_params para restringir los parametros que recibirá.
+- Se crea el código que genera todos los datos del vendedor que deben crearse automáticamente.
+2018-02-19 18:55:50 -0300
+
+2018-02-20 12:20:15 -0300
+-
 
 ---
+
+MARTES 20:
 -Falta evitar que un admin pueda ver admins de otras instituciones.
+- MOdificar la forma en que se obtiene el group_id cuando se crea un vendedor. Usar una forma más robusta que no solo
+  funcione con el botón de crear.
+- Iniciar con la creación de los confirm_token y de los mailers.
 
 A vuelta de vacaciones:
 - Hacer que el admin 'cree' los demás elementos
@@ -274,3 +299,8 @@ Proximos Pasos:
 
  - Ajax para el formulario de pagos en la vista de los talonarios para los administradores.
  - Se debe evitar que un usario cambaido un numero en la url pueda ver los boletos o talonarios de otros
+
+ * Cuando un admin crea un grupo, hacer que la opcion aparezca en la misma pagina, tal como sucede cuando se ingresan
+   las ventas a la institución. Hacer lo mismo para cuando se agrega un vendedor.
+
+ - Unicidad de los nombres de usuario y de los RUTs

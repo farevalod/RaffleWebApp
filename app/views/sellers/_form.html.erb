@@ -11,75 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :seller_name %>
-  </div>
+  <%= hidden_field_tag :group_id , @group_id %>
+  <table>
+    <thead>
+    <th colspan="2"><legend>Ingresa los datos del nuevo vendedor:</legend></th>
+    </thead>
 
-  <div class="field">
-    <%= form.label :rut %>
-    <%= form.text_field :rut, id: :seller_rut %>
-  </div>
+    <tbody>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, id: :seller_password %>
-  </div>
+    <tr class="field">
+      <td><%= form.label :Nombre %></td>
+      <td><%= form.text_field :name, id: :seller_name %></td>
+    </tr>
 
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, id: :seller_password_confirmation %>
-  </div>
+    <tr class="field">
+      <td><%= form.label :RUT %></td>
+      <td><%= form.text_field :rut, id: :seller_rut %></td>
+    </tr>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :seller_email %>
-  </div>
+    <tr class="actions">
+      <td colspan="2"><%= form.submit 'Crear' %></td>
+    </tr>
 
-  <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.number_field :phone_number, id: :seller_phone_number %>
-  </div>
+    </tbody>
+  </table>
 
-  <div class="field">
-    <%= form.label :num_in_institution %>
-    <%= form.number_field :num_in_institution, id: :seller_num_in_institution %>
-  </div>
-
-  <div class="field">
-    <%= form.label :num_of_logins %>
-    <%= form.number_field :num_of_logins, id: :seller_num_of_logins %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email_confirmed %>
-    <%= form.check_box :email_confirmed, id: :seller_email_confirmed %>
-  </div>
-
-  <div class="field">
-    <%= form.label :confirm_token %>
-    <%= form.text_field :confirm_token, id: :seller_confirm_token %>
-  </div>
-  
-  
-
-  <!--<div class="field">-->
-    <!--<#%= form.label :confirm_token %>-->
-    <!--<#%= form.text_field :confirm_token, id: :seller_confirm_token %>-->
-  <!--</div>-->
-
-
-  <div class="field">
-    <%= form.label :group_id %>
-    <%= form.text_field :group_id, id: :seller_group_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :institution_id %>
-    <%= form.text_field :institution_id, id: :seller_institution_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

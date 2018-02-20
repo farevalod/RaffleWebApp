@@ -49,7 +49,7 @@ ADMINISTRADOR DE INSTITUCIÓN
         - Listado:  Puede ver los administradores de su institución.
         - Elemento: Puede ver los detalles de cada admin y sus ultimos movimientos (por ejemplo: el ingreso de pagos o
                         la aceptación de alguna solicitud de un vendedor).
-        - Crear:    Solo el admin principal de la institución puede agregar nuevos administradores de institución.
+        + Crear:    Solo el admin principal de la institución puede agregar nuevos administradores de institución.
         - Editar:   Si puede editar todos los datos de los admins de su institución, solo si es el admin principal.
         - Destruir: Solo si es admin principal puede destruir a otros admins.
 

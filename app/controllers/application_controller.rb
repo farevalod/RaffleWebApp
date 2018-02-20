@@ -53,4 +53,9 @@ class ApplicationController < ActionController::Base
     phrase.gsub(/[^0-9]/i, '')
   end
 
+  def rut_formatter(rut)
+    only_num = remove_non_numeric(rut)
+    only_num[0..-8] + '.' + only_num[-7..-5] + '.' + only_num[-4..-2] + '-' + only_num[-1]
+  end
+
 end
