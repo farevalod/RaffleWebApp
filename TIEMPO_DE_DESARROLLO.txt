@@ -308,16 +308,15 @@ de los `tickets`.
 - Se embellecen los mails enformato texto y en formato html
 - Se cambio la configuración para que el host en desarrollo sea localhost:8000
 ***
+2018-02-20 18:58:20 -0300
 
-
+2018-02-20 19:52:58 -0300
+- Se le da formato a los nombres de los admins y los vendedores cuando se crean.
+- Se añade un cuadro para selecionar los boletos en el index.html.erb
 
 ---
 
-MARTES 20:
-- Iniciar con la creación de los confirm_token y de los mailers.
-
 A vuelta de vacaciones:
-- Hacer que el admin 'cree' los demás elementos
 - Ordenar los permisos y la información que se muestra de los vendedores
 - Estructurar los super usuarios
 - Añadir los mailers: compradores, admins, vendedores.

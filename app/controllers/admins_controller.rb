@@ -33,6 +33,7 @@ class AdminsController < ApplicationController
     # Solo un admin puede crear otro admin. Verificado por authorize_admin
     admin = Admin.find_by(id: session[:admin_id])
     create_params = create_admin_params
+    create_params[:name] = create_params[:name].titleize
     create_params[:user_name] = remove_non_alnum(remove_accent_marks(create_params[:name])).downcase
     create_params[:institution_id] = admin.institution.id
     create_params[:password] = create_params[:rut].tr('.','').tr('-','')[-5..-2]

@@ -37,6 +37,7 @@ class SellersController < ApplicationController
   def create
     parameters = create_seller_params
     parameters[:rut] = rut_formatter(parameters[:rut])
+    parameters[:name] = parameters[:name].titleize
     parameters[:user_name] = remove_non_alnum(remove_accent_marks(parameters[:name])).downcase
     parameters[:password] = parameters[:rut].tr('.','').tr('-','')[-5..-2]
     parameters[:num_of_logins] = 0
