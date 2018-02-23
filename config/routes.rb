@@ -25,6 +25,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :sellers do
+    member do
+      get :confirm_email
+    end
+  end
+
   resources :admins
   resources :sellers
   resources :tickets

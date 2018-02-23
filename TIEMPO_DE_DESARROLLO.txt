@@ -313,10 +313,14 @@ de los `tickets`.
 2018-02-20 19:52:58 -0300
 - Se le da formato a los nombres de los admins y los vendedores cuando se crean.
 - Se añade un cuadro para selecionar los boletos en el index.html.erb
+***
+- Se genera el SellerMailer
+2018-02-20 20:49:06 -0300
+
+
 
 ---
-
-A vuelta de vacaciones:
+pendiente
 - Ordenar los permisos y la información que se muestra de los vendedores
 - Estructurar los super usuarios
 - Añadir los mailers: compradores, admins, vendedores.

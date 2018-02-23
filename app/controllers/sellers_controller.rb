@@ -43,8 +43,6 @@ class SellersController < ApplicationController
     parameters[:num_of_logins] = 0
     parameters[:institution_id] = Admin.find(session[:admin_id]).institution_id
     parameters[:group_id] = params[:group_id]
-
-
     @seller = Seller.new(parameters)
 
     respond_to do |format|

@@ -2,6 +2,7 @@ class Seller < ApplicationRecord
   belongs_to :institution
   belongs_to :group
   has_many :books
+  before_create :confirmation_token
   has_secure_password
   validates :name, :rut, :password_digest, presence: true
 
@@ -105,5 +106,14 @@ class Seller < ApplicationRecord
     end
   end
 
+  private
+  def confirmation_token
+    if self.confirm_token.blank?
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    end
+  end
+
+  def seller_pending_data
+  end
 
 end
