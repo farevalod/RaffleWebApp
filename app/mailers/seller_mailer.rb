@@ -6,9 +6,8 @@ class SellerMailer < ApplicationMailer
   #
   #   en.seller_mailer.registration_confirmation.subject
   #
-  def registration_confirmation(seller, admin)
+  def registration_confirmation(seller)
     @seller = seller
-    @admin = admin
-    mail(to: "#{seller.name} <#{seller.email}>", subject: "#{@admin.institution.name.upcase} - Registrate en la Rifa")
+    mail(to: "#{seller.name} <#{seller.email}>", subject: "RIFA - Confirma tu Email")
   end
 end

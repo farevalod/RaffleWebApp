@@ -1,7 +1,8 @@
 class SellersController < ApplicationController
   before_action :set_seller, only: [:show, :edit, :update, :destroy]
   before_action :authorize_admin
-  skip_before_action :authorize_admin, only: :show
+  skip_before_action :authorize_admin, only: [:show, :confirm_email]
+  skip_before_action :authorize, only: :confirm_email
   before_action :validate_group_to_create, only: [:new, :create]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_seller
 
@@ -84,6 +85,16 @@ class SellersController < ApplicationController
     end
   end
 
+  def confirm_email
+    seller = Seller.find_by_confirm_token(params[:id])
+    if seller
+      seller.email_activate
+      redirect_to login_url, notice: "Tu email ha sido confiramdo. Ya puedes iniciar sesión!"
+    else
+      redirect_to main_page_url, notice: "El usuario no existe o este email ya fue confirmado."
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -130,8 +141,7 @@ class SellersController < ApplicationController
       logger.error "Intento de crear a un vendedor sin grupo"
       redirect_to groups_url, notice: 'Para agregar un vendedor debes seleccionar un grupo.'
     end
-
-
   end
+
 
 end

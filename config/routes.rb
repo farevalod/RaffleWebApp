@@ -3,8 +3,12 @@ Rails.application.routes.draw do
   root 'main_page#show', as: 'main_page'
 
   controller :payment do
-    get 'payment' => :new
+    # get 'payment' => :new
     post 'payment' => :create
+  end
+
+  controller :pending_data do
+    post 'pending_data' => :create
   end
 
   controller :admin_sessions do

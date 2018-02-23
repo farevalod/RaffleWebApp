@@ -1,0 +1,34 @@
+
+<div class="form">
+
+  <%= form_tag(pending_data_path) do %>
+    <%= hidden_field_tag :seller_id , params[:seller_id] %>
+    <%= hidden_field_tag :user_name , params[:user_name] %>
+    <table>
+      <thead>
+      <tr>
+        <th colspan="3">Antes de continuar ingresa los siguientes datos:</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr>
+        <td><%= label_tag :email, 'Email:' %></td>
+        <td><%= email_field_tag :email, params[:email] %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag :phone_number, 'Número de Teléfono:' %></td>
+        <td><%= number_field_tag :phone_number, params[:phone_number] %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= submit_tag 'Ingresar' %></td>
+      </tr>
+
+      </tbody>
+    </table>
+
+
+  <% end %>
+</div>

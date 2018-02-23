@@ -7,13 +7,6 @@ class PaymentController < ApplicationController
     book = Book.find(params[:book_id])
     pending = book.tickets_sold - book.tickets_paid
 
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    puts book.tickets_sold
-    puts book.tickets_paid
-    puts pending
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-
-
     # A futuro hacer que si alguien paga más de los boletos que tiene pendiente entonces se le vendan los boletos a si
     # mismo. Esto previa advertencia y solicitud de aprobación al usuario.
     case

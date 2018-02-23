@@ -315,8 +315,45 @@ de los `tickets`.
 - Se añade un cuadro para selecionar los boletos en el index.html.erb
 ***
 - Se genera el SellerMailer
+- Se crea la ruta para recibir los token de confirmación de los emails de los vendedores.
+- Se crea el contenido del email que se enviará en registration_confirmation.html.erb.
+- En el modelo de los sellers se crea el metodo confirmation_token que usa SecureRandom para generar un string que se
+  almacena como confirm_token de los vendedores.
+
 2018-02-20 20:49:06 -0300
 
+***
+2018-02-23 12:55:26 -0300
+- Se crea el controlador PendingData para añadir a través de un formulario el email y el teléfono de los vendedores,
+  cuando estos inicien sesión por primera vez.
+2018-02-23 13:21:20 -0300
+
+2018-02-23 13:32:23 -0300
+- Se crea la ruta de pending_data que recibirá los post.
+- El inicio de sesión de los vendedores se estructura como una tabla.
+- La visualización del new de pending_data se estructura como tabla con los datos necesarios.
+- Se modifica la accion create de seller_session para redirigir a la pagina de inicio y solicitar los datos faltantes si
+  vendedor no ha confirmado su email.
+2018-02-23 14:26:21 -0300
+
+2018-02-23 15:18:05 -0300
+- Se marcan como desabilitados los campos de nom de usuario y contraseña cuando se piden los datos pendientes.
+- Se modifica application.scss para eliminar las flechas de subir y bajar en los campos numéricos de los formularios.
+2018-02-23 15:43:27 -0300
+
+2018-02-23 15:51:38 -0300
+- Se mejoró la función que evita repeticiones de nombres de usuario dentro de la insticución.
+- Se modifica la accion create de PendingDataController para actualizar el usuario y enviar el mail de confirmación
+  llamando a registration_confirmaition
+- Se crea la acción confirm_email en el SellerController que revisa si el token recibido corresponde a un usuario válido
+  y si lo es marca cambia el atributo email_confirmed del usuario a true y elimina el confirm_token.
+- Se crea el método email_activate en el modelo de los admins para modificar email_confirmed y confirm_token. Es usado
+  por confirm_email.
+2018-02-23 17:21:45 -0300
+
+2018-02-23 17:46:07 -0300
+***
+-
 
 
 ---

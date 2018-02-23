@@ -6,6 +6,17 @@ class Seller < ApplicationRecord
   has_secure_password
   validates :name, :rut, :password_digest, presence: true
 
+  #------------------------------------------------------------------------------------------
+  private
+  def confirmation_token
+    if self.confirm_token.blank?
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    end
+  end
+
+  def seller_pending_data
+  end
+
   # Este metodo hace que se creen talonarios para el vendedor en base a la cantidad definida en la institución.
   def create_initial_books
     institution = group.institution
@@ -21,12 +32,15 @@ class Seller < ApplicationRecord
 
   # Metodo para general el nombre de usuario que el vendedor utilizará para iniciar sesión.
   def create_user_name
-    user_name = name.downcase.delete(' ')
-    while Seller.find_by(institution_id: institution_id, user_name: user_name)
-      user_name += '1'
+    coincidences_count = Seller.where(institution_id: institution_id).where(name: name).count -1
+    unless coincidences_count.zero?
+      new_user_name = self.user_name += coincidences_count.to_s
+      update(user_name: new_user_name )
     end
-    update( user_name: user_name )
   end
+
+  #------------------------------------------------------------------------------------------
+  public
 
   # Este metodo se usa para evitar tener varios métodos del modelo en la acción create del controlador.
   def init_seller
@@ -106,14 +120,10 @@ class Seller < ApplicationRecord
     end
   end
 
-  private
-  def confirmation_token
-    if self.confirm_token.blank?
-      self.confirm_token = SecureRandom.urlsafe_base64.to_s
-    end
-  end
-
-  def seller_pending_data
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!
   end
 
 end

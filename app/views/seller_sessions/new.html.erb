@@ -1,22 +1,37 @@
 <div class="form">
-  <% if flash[:alert] %>
-    <p id="notice"><%= flash[:alert] %></p>
-  <% end %>
+
   <%= form_tag do %>
-    <fieldset>
-      <legend>Please Log In</legend>
-      <div>
-        <%= label_tag :user_name, 'User Name:' %>
-        <%= text_field_tag :user_name, params[:user_name] %>
-      </div>
-      <div>
-        <%= label_tag :password, 'Password:' %>
-        <%= password_field_tag :password, params[:password] %>
-      </div>
-      <div>
-        <%= submit_tag "Login" %>
-      </div>
-    </fieldset>
+    <table>
+      
+        <thead>
+          <tr>
+            <th colspan="2">Por Favor Inicia Sesión:</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td><strong><%= label_tag :user_name, 'Nombre de Usuario:' %></strong></td>
+              <td><%= text_field_tag :user_name, params[:user_name] , disabled: @pending_data, value: @name%></td>
+            </tr>
+            <tr>
+              <td><strong><%= label_tag :password, 'Contraseña:' %></strong></td>
+              <td><%= password_field_tag :password, params[:password] , disabled: @pending_data%></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= submit_tag "Ingresar", disabled: @pending_data %></td>
+            </tr>
+        </tbody>
+     
+    </table>
   <% end %>
-  <%= link_to "Iniciar como administrador", login_admin_path %>
+
+  <%if @pending_data%>
+    <%= render file: 'pending_data/new' %>
+  <%else%>
+    <%= link_to "Iniciar como administrador", login_admin_path %>
+  <%end%>
+
+
 </div>
