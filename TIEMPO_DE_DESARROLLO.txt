@@ -353,14 +353,28 @@ de los `tickets`.
 
 2018-02-23 17:46:07 -0300
 ***
+- Se modifica la acción new de los controladores de lo vendedores y de los admins para evitar que puedan ingresar a la
+  ventana de inicio de sesión cuando ya hay una sesión iniciada.
+- Se limpiaron las bases de datos.
+2018-02-23 18:31:22 -0300
+
+2018-02-23 18:44:18 -0300
+- Se corrigió un error que aún permanecía en el script que numera los nombres de usuario para evitar coincidencias.
+  Ahora la función se llama modify_user_name.
+- Se replica la función modify_user_name con una pequeña modificación en el controlador de los admins.
+2018-02-23 19:09:15 -0300
+
+2018-02-24 13:21:29 -0300
+***
 -
+
 
 
 ---
 pendiente
 - Ordenar los permisos y la información que se muestra de los vendedores
 - Estructurar los super usuarios
-- Añadir los mailers: compradores, admins, vendedores.
+- Añadir los mailers: compradores.
 
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:

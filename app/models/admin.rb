@@ -51,6 +51,16 @@ class Admin < ApplicationRecord
     save!
   end
 
+  # Metodo para general el nombre de usuario que el vendedor utilizará para iniciar sesión.
+  def modify_user_name
+    coincidences_count = (Admin.where(institution_id: institution_id).where(name: name).count - 1)
+    unless coincidences_count.zero?
+      new_user_name = self.user_name += coincidences_count.to_s
+      update(user_name: new_user_name )
+    end
+  end
+
+
   private
 
   def confirmation_token

@@ -31,8 +31,8 @@ class Seller < ApplicationRecord
   end
 
   # Metodo para general el nombre de usuario que el vendedor utilizará para iniciar sesión.
-  def create_user_name
-    coincidences_count = Seller.where(institution_id: institution_id).where(name: name).count -1
+  def modify_user_name
+    coincidences_count = (Seller.where(institution_id: institution_id).where(name: name).count - 1)
     unless coincidences_count.zero?
       new_user_name = self.user_name += coincidences_count.to_s
       update(user_name: new_user_name )

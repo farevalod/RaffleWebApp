@@ -2,10 +2,14 @@ class AdminSessionsController < ApplicationController
   skip_before_action :authorize, only: [:new,:create]
 
   def new
+    if session[:user_id] or session[:admin_id]
+      redirect_to main_page_url, notice: "Actualmente hay una sesión iniciada"
+    end
   end
 
   def create
-    user = Admin.find_by(user_name: params[:user_name])
+    user_name = remove_non_alnum(remove_accent_marks(params[:user_name])).downcase
+    user = Admin.find_by(user_name: user_name)
     if user.try(:authenticate, params[:password])
       if user.email_confirmed
         session[:admin_id] = user.id
