@@ -1,5 +1,5 @@
 class SellerSessionsController < ApplicationController
-  skip_before_action :authorize, only: [:new, :create]
+  skip_before_action :authorize, only: [:new, :create, :destroy]
 
   def new
     if session[:user_id] or session[:admin_id]

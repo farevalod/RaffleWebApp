@@ -14,9 +14,6 @@ class Seller < ApplicationRecord
     end
   end
 
-  def seller_pending_data
-  end
-
   # Este metodo hace que se creen talonarios para el vendedor en base a la cantidad definida en la institución.
   def create_initial_books
     institution = group.institution
@@ -45,7 +42,7 @@ class Seller < ApplicationRecord
   # Este metodo se usa para evitar tener varios métodos del modelo en la acción create del controlador.
   def init_seller
     create_initial_books
-    create_user_name
+    modify_user_name
   end
 
   def del_seller_books_and_tickets
@@ -102,21 +99,14 @@ class Seller < ApplicationRecord
     # El caso en que no es admin está cubierto por authorize_admin
     admin = Admin.find_by(id: admin_id)
     seller = self.find(seller_id)
-    puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    puts admin
-    puts seller
-    puts admin.admin_level
-    puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
 
     if admin
       ad_lv = admin.admin_level
       if ad_lv.between?(1, 2) or (ad_lv.between?(3, 4) and admin.institution.sellers.include?(seller))
         return seller
       end
-    else
-      if user_id == seller_id
-        return seller
-      end
+    elsif user_id == seller_id.to_i
+      return seller
     end
   end
 

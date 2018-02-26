@@ -8,6 +8,7 @@ class TicketsController < ApplicationController
   def index
     if params[:book_id]
       @tickets = Ticket.where(book_id: params[:book_id])
+      @book_sold = @tickets.last.sold
     else
       # @tickets = Ticket.all
       redirect_to books_url, notice: "Debes seleccionar un talonario"

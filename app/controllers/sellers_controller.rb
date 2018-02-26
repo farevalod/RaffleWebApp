@@ -1,8 +1,8 @@
 class SellersController < ApplicationController
-  before_action :set_seller, only: [:show, :edit, :update, :destroy]
   before_action :authorize_admin
   skip_before_action :authorize_admin, only: [:show, :confirm_email]
   skip_before_action :authorize, only: :confirm_email
+  before_action :set_seller, only: [:show, :edit, :update, :destroy]
   before_action :validate_group_to_create, only: [:new, :create]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_seller
 
@@ -114,7 +114,13 @@ class SellersController < ApplicationController
 
   def invalid_seller
     logger.error "Intento de acceder a un vendedor(#{params[:id]}) no válido"
-    redirect_to sellers_url, notice: 'Vendedor no válido!'
+    if session[:user_id]
+      redirect_to seller_url(session[:user_id]), notice: 'Vendedor no válido!'
+    elsif session[:admin_id]
+      redirect_to sellers_url, notice: 'Vendedor no válido!'
+    else
+      redirect_to main_page_url, notice: 'Vendedor no válido!'
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

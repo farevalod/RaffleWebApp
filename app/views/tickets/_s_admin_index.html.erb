@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tickets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Num</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Book</th>
+      <!--<th colspan="3"></th>-->
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.num_in_book %></td>
+        <td><%= ticket.name %></td>
+        <td><%= ticket.email %></td>
+        <td><%= ticket.phone_number %></td>
+        <td><%= ticket.book.num_in_institution.to_s + '-' + ticket.book.seller.name.to_s%></td>
+        <td><input type="checkbox" name="vehicle" value="Bike"></td>
+        <td><input type="checkbox" name="vehicle" value="Car" checked> I have a car<br></td>
+        <!--<td><#%= link_to 'Show', ticket %></td>-->
+        <!--<td><#%= link_to 'Edit', edit_ticket_path(ticket) %></td>-->
+        <!--<td><#%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ticket', new_ticket_path %>

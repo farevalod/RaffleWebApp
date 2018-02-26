@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books, @num = Book.select_books_to_show(session[:admin_id], session[:user_id])
+    @books, @num, @status = Book.select_books_to_show(session[:admin_id], session[:user_id])
   end
 
 
@@ -20,7 +20,6 @@ class BooksController < ApplicationController
   end
 
   # # No se crean talonarios por formularios:
-  #
   # # GET /books/new
   # def new
   #   @book = Book.new
@@ -33,18 +32,35 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
+    user = Seller.find_by(id: session[:user_id])
+    books_quan = user.books.count
+    max_books = user.institution.max_books_per_seller
+    institution = user.institution
+    book_num = institution.books.count + 1
+    parameters = { num_in_institution: book_num,
+                   seller_id: user.id,
+                   institution_id: institution.id }
 
-    respond_to do |format|
+    if books_quan < max_books
+      @book = Book.new(parameters)
       if @book.save
         @book.create_tickets
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
-        format.json { render :show, status: :created, location: @book }
-      else
-        format.html { render :new }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        redirect_to books_url , notice: 'Se ha agregado un nuevo talonario.'
       end
+    else
+      redirect_to books_url, notice: 'Has alcanzado el máximo de talonarios permitidos. Contáctate con tu institución.'
     end
+
+    # respond_to do |format|
+    #   if @book.save
+    #     @book.create_tickets
+    #     format.html { redirect_to @book, notice: 'Se ha cread el nuevo talonario!' }
+    #     format.json { render :show, status: :created, location: @book }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @book.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /books/1

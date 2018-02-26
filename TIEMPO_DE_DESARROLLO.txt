@@ -366,15 +366,65 @@ de los `tickets`.
 
 2018-02-24 13:21:29 -0300
 ***
--
+- Se corrige un error que causaba que dos páginas de redireccionaran mutuamente ad infinitum (/sellers y /sellers/id)
+  para cuando eran abiertas por un vendedor.
+2018-02-24 14:17:00 -0300
 
+2018-02-25 13:04:37 -0300
+- Se modifica el create del controlador de los talonarios. Si el vendedor no ha alcanzado el máx de talonarios que
+  establece la instituciónn se crea uno nuevo.
+- Se modifica la visualización del index de los talonarios. Se modifica las columans que muestra. Se crea una columna
+  que muestra un mensaje que varía dependiendo si el talonario fue vendido, pagado o está el proceso. Se añande el botón
+  nuevo talonario.
+2018-02-25 14:22:43 -0300
 
+2018-02-25 16:03:52 -0300
+- Se crean las vistas parciales _s_admin_index y _seller_index para diferenciar cómo se muestran los tickets para
+  los vendedores y cómo se muestran para los super admins.
+- Se modifican los datos de los boletos que se le muestran a los vendedores.
+- Se agrega el botón Vender al index de los tickets para los vendedores.
+- Se configuran los check box del index de los tickets para los vendedores para seleccionar los boletos del talonario
+  que se venderán.
+- Se crea el formulario new de sell_tickets que recibe las ids de los boletos vendidos.
+- Se crea el controlador SellTickets.
+2018-02-25 17:36:22 -0300
+
+2018-02-25 17:46:38 -0300
+- Se crea la función sell en el modelo de los Tickets para actualizarlos con los datos dsps de la venta y para marcar el
+  talonario como vendido si es que no quedan por vender.
+- Se implementa el mecanismo para entregar el book_id al create del controlador sell_tickets para redirigir la página
+  después de incorporar las ventas.
+- Se edita la accion create de SellTicketsController para llamar a la función sell para cada id entregado en los
+  params.
+2018-02-25 18:30:33 -0300
+
+2018-02-25 18:50:00 -0300
+- Se corrige un error al pasar el listado de ids de tickets a vender.
+2018-02-25 19:25:31 -0300
+
+2018-02-25 20:34:10 -0300
+- Se mejora el index de los tickets. Aquellos vendidos son marcados y no se permite seleccionarlos para venderlos. Se
+  elimina el botón para vender tickets cuando el taonario ya está completamente vendido. Los nombres de los compradores
+  son formateados como título.
+- Se generan los scripts que guardan la fecha y hora en la variale sold_at de los talonarios y los tickets.
+***
 
 ---
 pendiente
 - Ordenar los permisos y la información que se muestra de los vendedores
 - Estructurar los super usuarios
 - Añadir los mailers: compradores.
+
+lunes 26 de febrero:
+Día libre
+
+martes 27 de febrero:
+- Eliminar vulnerabilidades de la venta de boletos:
+    - Evitar que un vendedor pueda vender boletos de otra persona. O boletos suyos pero de distintos talonarios.
+    - Evitar que se puedan vender boletos ya vendidos.
+- Implementar que los boletos se dejen de mostrar una vez que son pagados a la institución. (O cuando el talonario se
+  encuentre totalmente vendido, evaluar)
+- Añadir los mailers para los compradores de los boletos.
 
 -----------------------------------------------------------------------------------------------------------------------
 Proximos Pasos:
@@ -391,7 +441,8 @@ Proximos Pasos:
     - Aceptar/rechazar solicitudes de eliminar o modificar un boleto (llega un email con los links necesarios)
     - Agregar nevas instituciones y sus administradores
 
-- Creación de la tabla de base de datos de Email.
+- Creación de la tabla de base de datos de Email. Tendrá las columnas email, institution_id y receive_information (que
+  será true si el comprador desea recibir información de la rifa, false de lo contrario)
 
 - Envio de email para los administradores
 - Envío de email para los vendedores
@@ -408,3 +459,21 @@ Proximos Pasos:
    las ventas a la institución. Hacer lo mismo para cuando se agrega un vendedor.
 
  - Unicidad de los nombres de usuario y de los RUTs
+
+ - Agregar la columna payment_required a las instituciones. Está será true si los vendedores deben entregar el pago a la
+   institución. False si el dinero lo conservan los vendedores (ej: rifa DEL, rifa ATI para giras de estudio)
+
+ - Implementar que para cada institución se cree automáticamente una página abierta para el público sobre la rifa. En
+   esta se mostrarán los premios, datos de sorteo, valor de la rifa, entre otros datos de la institución. Además se
+   mostrará un pequeño texto entregado por la institución y su logo. (A futuro en esta misma página se puede mostrar el
+   sorteo a tiempo real para que la gente lo pueda seguir y sienta más confianza del proceso. También puede quedar el
+   video por un tiempo en la página)
+   Esta página pública, en caso de que la institución lo deseee, puede simplemente redireccionar a una página de la
+   institución.
+
+ - Implementar la creación automática de las credenciales de los vendedores y los formularios de venta impresos, para
+   los vendedores que no poseen conexión constante a internet. Estos vendedores deberán ingresar los datos al sistema
+   una vez que tengan acceso a un equipo con conexión a internet.
+
+ - Crear la base de datos de premios, asociarlos a una institución y mostrarlo en el show de la institución ( para los
+   admins y para quienes visiten la página pública)

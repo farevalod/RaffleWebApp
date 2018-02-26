@@ -1,0 +1,42 @@
+<% #Usa @tickets %>
+
+<%= form_tag(new_enter_sale_path, method: :get) do %>
+  <%= hidden_field_tag :book_id , params[:book_id]%>
+  <table>
+    <thead>
+      <tr>
+        <th>Num</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% @tickets.each do |ticket| %>
+        <tr>
+          <td><%= ticket.num_in_book %></td>
+          <td><%= ticket.name %></td>
+          <td><%= ticket.email %></td>
+          <td><%= ticket.phone_number %></td>
+          <!--<td><input type="checkbox" name="" value="Bike"></td>-->
+          <!--<td><#%= check_box_tag id: ticket.id, value: params[ticket.id]%></td>-->
+          <% if ticket.sold %>
+            <td><strong>Vendido!</strong></td>
+          <%else%>
+            <td><%= check_box_tag 'tickets_ids[]', ticket.id %></td>
+          <%end%>
+        </tr>
+      <% end %>
+
+      <tr>
+        <% unless @book_sold %>
+          <td colspan="5"><%= submit_tag 'Vender'%></td>
+        <%end%>
+      </tr>
+
+    </tbody>
+  </table>
+<%end%>

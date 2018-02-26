@@ -5,6 +5,16 @@ class Ticket < ApplicationRecord
   validates :phone_number, numericality:  {less_than_or_equal_to: 99999999999, allow_blank: true}
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :allow_blank => true
 
+  def sell(name, email, phone_number)
+    parameters = { name: name.titleize, email: email,
+                   phone_number: phone_number, sold: true, sold_at: DateTime.now }
+    update(parameters)
+    quantity = book.tickets.where(sold: false).count
+    if quantity.zero?
+      book.update(sold: true, sold_at: DateTime.now)
+    end
+  end
+
   def self.set_corresponding_ticket(ticket_id, admin_id, user_id)
     # El caso en que no es vendedor o super admin está cubierto por authorize_seller_s_admin
     admin = Admin.find_by(id: admin_id)
@@ -19,5 +29,6 @@ class Ticket < ApplicationRecord
       end
     end
   end
+
 
 end

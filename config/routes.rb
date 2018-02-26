@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   root 'main_page#show', as: 'main_page'
 
+  controller :sell_tickets do
+    get 'tickets/enter_sale' => :new, as: 'new_enter_sale'
+    post 'tickets/enter_sale' => :create, as: 'enter_sale'
+  end
+
   controller :payment do
     # get 'payment' => :new
     post 'payment' => :create
