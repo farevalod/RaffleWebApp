@@ -18,7 +18,6 @@ class SellersController < ApplicationController
   # GET /sellers/1.json
   def show
     @admin = Admin.find_by(id: session[:admin_id])
-    @books = Book.where(seller_id: @seller.id)
   end
 
   # GET /sellers/new
@@ -76,9 +75,7 @@ class SellersController < ApplicationController
   # DELETE /sellers/1
   # DELETE /sellers/1.json
   def destroy
-
-    @seller.del_seller_books_and_tickets
-    #@seller.destroy
+    @seller.destroy
 
     respond_to do |format|
       format.html { redirect_to sellers_url, notice: 'Seller was successfully destroyed.' }
