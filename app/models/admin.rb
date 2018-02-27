@@ -13,34 +13,29 @@ class Admin < ApplicationRecord
 
   def self.select_admins_to_show(admin)
     if admin
-      case admin.admin_level
-        # Si es super admin ve todos los admins:
-        when 1 .. 2
-          num = 1
-          admins = Admin.all
-        # Si es admin de institución solo ve los admins de la institución:
-        when 3 .. 4
-          num = 2
-          admins = institution.admins
+      # Si es super admin ve todos los admins:
+      if admin.admin_level.in? [1,2]
+        Admin.all
+      # Si es admin de institución solo ve los admins de la institución:
+      elsif admin.admin_level.in? [3,4]
+        institution.admins
       end
     else
       raise "No Admin Found" 
     end
-    admins
   end
 
   def self.set_corresponding_admin(admin_id_param, admin_id)
     # El caso en que no es admin está cubierto por authorize_admin
     # El caso en que no es usuario esta cubierto por authorize
-    admin = find(admin_id)
-    admin_2 = find(admin_id_param)
-    ad_lv = admin.admin_level
-	# Los dos lados del if son iguales?
-    if ad_lv.between?(1, 2)
+    admin = Admin.find(admin_id)
+    admin_2 = Admin.find(admin_id_param)
+    if admin.admin_level.in? [1,2] or admin_2.in? admin.institution.admins
       admin_2
-    elsif admin.institution.admins.include?(admin_2)
-      admin_2
+    else
+      raise "No Admin Found"
     end
+
   end
 
   def email_activate

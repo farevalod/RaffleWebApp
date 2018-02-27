@@ -30,12 +30,12 @@ class Institution < ApplicationRecord
   end
 
   def self.set_corresponding_institution(institution_id, admin_id)
+    institution = Institution.find(institution_id)
     admin = Admin.find(admin_id)
     # El caso en que no es admin está cubierto por authorize_admin
     # El caso en que no es usuario esta cubierto por authorize
-    ad_lv = admin.admin_level
-    if ad_lv.between?(1, 2) or (ad_lv.between?(3, 4) and (admin.institution_id == institution_id.to_i) )
-      self.find(institution_id)
+    if admin.admin_level.in? [1,2,3,4] and admin.in? institution.admins
+      institution
     end
   end
 end
