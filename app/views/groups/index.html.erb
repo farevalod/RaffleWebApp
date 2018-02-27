@@ -2,7 +2,7 @@
 
 <h1>Grupos:</h1>
 
-<%case @admin_level%>
+<%case @admin.admin_level%>
 <%when 1 .. 2%>
   <%= render 'groups/super_admin_index' %>
 <%when 3 .. 4%>

@@ -47,41 +47,33 @@ class Seller < ApplicationRecord
   end
 
   def tickets_sold
-    sold = 0
-	books.map(&:tickets).select(&:sold)
-    Book.where(seller_id: id).map(&:books)each do |book|
-      sold += Ticket.where(book_id: book.id).where(sold: true).count
-    end
-    sold
+    books.flat_map(&:tickets).select(&:sold).count
   end
 
   def books_sold
-    Book.where(seller_id: id, sold: true).count
+    books.select(&:sold).count
   end
 
   def tickets_paid
-    paid = 0
-    Book.where(seller_id: id).each do |book|
-      paid += Ticket.where(book_id: book.id).where(paid: true).count
-    end
-    paid
+    books.flat_map(&:tickets).select(&:paid).count
   end
 
   def books_paid
-    Book.where(seller_id: id, paid: true).count
+    books.select(&:paid).count
   end
 
-  def self.select_sellers_to_show(admin_id)
-    admin = Admin.find_by(id: admin_id)
+  def self.select_sellers_to_show(admin)
     if admin
       case admin.admin_level
         when 1 .. 2
           sellers = Seller.all
         when 3 .. 4
-          sellers = Seller.where(institution_id: admin.institution.id)
+          sellers = admin.institution.sellers
       end
+    else
+      raise "No Admin Found"
     end
-     [sellers, admin.admin_level]
+    sellers
   end
 
   def self.set_corresponding_seller(seller_id, admin_id, user_id)

@@ -9,7 +9,8 @@ class SellersController < ApplicationController
   # GET /sellers
   # GET /sellers.json
   def index
-    @sellers, @admin_level = Seller.select_sellers_to_show(session[:admin_id])
+    @admin = Admin.find_by(id: session[:admin_id])
+    @sellers = Seller.select_sellers_to_show(@admin)
     @group_id = nil
   end
 

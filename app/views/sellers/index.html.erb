@@ -1,6 +1,6 @@
 <h1>Vendedores: </h1>
 
-<%case @admin_level%>
+<%case @admin.admin_level%>
   <%when 1 .. 2%>
     <%= render 'sellers/super_admin_index' %>
   <%when 3 .. 4%>

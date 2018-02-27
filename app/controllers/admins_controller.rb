@@ -9,7 +9,8 @@ class AdminsController < ApplicationController
   # GET /admins
   # GET /admins.json
   def index
-    @admins, @num = Admin.select_admins_to_show(session[:admin_id])
+    @admin = Admin.find_by(id: session[:admin_id])
+    @admins = Admin.select_admins_to_show(@admin)
   end
 
   # GET /admins/1

@@ -11,8 +11,7 @@ class Admin < ApplicationRecord
     end
   end
 
-  def self.select_admins_to_show(admin_id)
-    admin = Admin.find_by(id: admin_id)
+  def self.select_admins_to_show(admin)
     if admin
       case admin.admin_level
         # Si es super admin ve todos los admins:
@@ -22,15 +21,12 @@ class Admin < ApplicationRecord
         # Si es admin de institución solo ve los admins de la institución:
         when 3 .. 4
           num = 2
-          admins = Admin.where(institution_id: admin.institution.id)
-        else
-          # Para evitar posibles variablse no inicializadas. Aunque nunca debería entrar acá.
-		  # raise "No Admin Found" ?
-          admins = nil
-          num = nil
+          admins = institution.admins
       end
-      [admins, num]
+    else
+      raise "No Admin Found" 
     end
+    admins
   end
 
   def self.set_corresponding_admin(admin_id_param, admin_id)

@@ -4,28 +4,27 @@ class Group < ApplicationRecord
   validates :name, presence: true
 
   def tickets_sold
-    Seller.where(group_id: id).map(&:tickets_sold).sum
+    sellers.map(&:tickets_sold).sum
   end
 
   def books_sold
-    Seller.where(group_id: id).map(&:books_sold).sum
+    sellers.map(&:books_sold).sum
   end
 
   def sellers_quantity
     Seller.where(group_id: id).count
   end
 
-  def self.select_groups_to_show(admin_id)
-    admin = Admin.find_by(id: admin_id)
+  def self.select_groups_to_show(admin)
     if admin
       case admin.admin_level
         when 1 .. 2
           groups = Group.all
         when 3 .. 4
-          groups = Group.where(institution_id: admin.institution.id)
+          groups = admin.institution.groups
       end
     end
-    return groups, admin.admin_level
+    return groups
   end
 
   def self.set_corresponding_group(group_id, admin_id)
