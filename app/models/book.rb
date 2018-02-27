@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
   belongs_to :seller
   belongs_to :institution
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
   validates :num_in_institution, presence: true
 
   def create_tickets

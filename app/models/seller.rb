@@ -4,7 +4,7 @@ class Seller < ApplicationRecord
   # http://guides.rubyonrails.org/association_basics.html
   # dependent: destroy
   has_many :books, dependent: :destroy
-  has_many :tickets, through: :books, dependent: :destroy
+  has_many :tickets, through: :books
   before_create :confirmation_token
   has_secure_password
   validates :name, :rut, :password_digest, presence: true

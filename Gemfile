@@ -38,7 +38,7 @@ Para instalar bcrypt:
 gem install bcrypt --platform=ruby
 -------------------------------------------------------------------------------
 "
-#gem 'bcrypt', '~> 3.1.11', platforms: [:ruby, :x64_mingw, :mingw] ## OJO OJO OJO OJO OJO
+gem 'bcrypt', '~> 3.1.11', platforms: [:ruby, :x64_mingw, :mingw] ## OJO OJO OJO OJO OJO
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
