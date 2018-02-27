@@ -6,27 +6,27 @@ class Institution < ApplicationRecord
   validates :name, :tickets_per_book, :books_per_seller, :draw_date, :ticket_price, :max_books_per_seller, presence: true
 
   def tickets_sold
-    Group.where(institution_id: id).map(&:tickets_sold).sum
+    groups.map(&:tickets_sold).sum
   end
 
   def books_sold
-    Group.where(institution_id: id).map(&:books_sold).sum
+    groups.map(&:books_sold).sum
   end
 
   def sellers_quantity
-    Seller.where(institution_id: id).count
+    sellers.count
   end
 
   def tickets_paid
-    Seller.where(institution_id: id).map(&:tickets_paid).sum
+    sellers.map(&:tickets_paid).sum
   end
 
   def groups_count
-    Group.where(institution_id: id).count
+    groups.count
   end
 
   def admins_count
-    Admin.where(institution_id: id).count
+    admins.where(institution_id: id).count
   end
 
   def self.set_corresponding_institution(institution_id, admin_id)

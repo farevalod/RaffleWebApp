@@ -46,11 +46,11 @@ class Book < ApplicationRecord
   end
 
   def tickets_sold
-    Ticket.where(book_id: id).where(sold: true).count
+    tickets.where(sold: true).count
   end
 
   def tickets_paid
-    Ticket.where(book_id: id).where(paid: true).count
+    tickets.where(paid: true).count
   end
 
 
