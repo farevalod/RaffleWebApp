@@ -1,11 +1,10 @@
 <h1>Talonarios:</h1>
 
-<%case @num%>
-  <%when 1%>
+<% if @admin.admin_level.in? [1,2] %>
     <%= render 'books/super_admin_index' %>
-  <%when 2%>
+<% elsif @admin.admin_level.in? [2,3] %>
     <%= render 'books/admin_index' %>
-  <%when 3%>
+<% else %>
     <%= render 'books/seller_index' %>
 <%end%>
 

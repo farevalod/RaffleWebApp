@@ -10,8 +10,7 @@ class Ticket < ApplicationRecord
     parameters = { name: name.titleize, email: email,
                    phone_number: phone_number, sold: true, sold_at: DateTime.now }
     update(parameters)
-    quantity = book.tickets.where(sold: false).count
-    if quantity.zero?
+    if book.tickets.all? &:sold
       book.update(sold: true, sold_at: DateTime.now)
     end
   end

@@ -14,33 +14,27 @@ class Book < ApplicationRecord
     end
   end
 
-  def self.select_books_to_show(admin_id, user_id)
-    admin = Admin.find_by(id: admin_id)
+  def self.select_books_to_show(admin, user_id)
     if admin
       case admin.admin_level
         when 1 .. 2
-          num = 1
           books = Book.all
         when 3 .. 4
-          num = 2
-          books = Book.where(institution_id: admin.institution.id)
+          admin.institution.books
       end
     else
-      num = 3
       books = Book.where(seller_id: user_id)
       # Cuando no hay ni admin ni user esta cubierto por el before_action: authorize
     end
-    [books, num]
+    books
   end
 
   def self.set_corresponding_book(book_id, admin_id, user_id)
     # El caso en que no es usuario está cubierto por authorize
     admin = Admin.find_by(id: admin_id)
     book = self.find(book_id)
-
     if admin
-      ad_lv = admin.admin_level
-      if ad_lv.between?(1, 2) or (ad_lv.between?(3, 4) and admin.institution.books.include?(book))
+      if admin.admin_level.in? [1,2,3,4] and admin.institution.books.include?(book)
         return book
       end
     else

@@ -5,7 +5,9 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books, @num, @status = Book.select_books_to_show(session[:admin_id], session[:user_id])
+    @admin = Admin.find(session[:admin_id])
+    @user = User.find(session[:user_id])
+    @books = Book.select_books_to_show(@admin, session[:user_id])
   end
 
 
