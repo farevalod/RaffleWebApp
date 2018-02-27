@@ -25,6 +25,7 @@ class Admin < ApplicationRecord
           admins = Admin.where(institution_id: admin.institution.id)
         else
           # Para evitar posibles variablse no inicializadas. Aunque nunca debería entrar acá.
+		  # raise "No Admin Found" ?
           admins = nil
           num = nil
       end
@@ -38,6 +39,7 @@ class Admin < ApplicationRecord
     admin = find(admin_id)
     admin_2 = find(admin_id_param)
     ad_lv = admin.admin_level
+	# Los dos lados del if son iguales?
     if ad_lv.between?(1, 2)
       admin_2
     elsif admin.institution.admins.include?(admin_2)
@@ -46,8 +48,8 @@ class Admin < ApplicationRecord
   end
 
   def email_activate
-    self.email_confirmed = true
-    self.confirm_token = nil
+    email_confirmed = true
+    confirm_token = nil
     save!
   end
 
@@ -55,7 +57,7 @@ class Admin < ApplicationRecord
   def modify_user_name
     coincidences_count = (Admin.where(institution_id: institution_id).where(name: name).count - 1)
     unless coincidences_count.zero?
-      new_user_name = self.user_name += coincidences_count.to_s
+      new_user_name = user_name += coincidences_count.to_s
       update(user_name: new_user_name )
     end
   end
@@ -64,8 +66,8 @@ class Admin < ApplicationRecord
   private
 
   def confirmation_token
-    if self.confirm_token.blank?
-      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    if confirm_token.blank?
+      confirm_token = SecureRandom.urlsafe_base64.to_s
     end
   end
 

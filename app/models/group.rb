@@ -4,19 +4,11 @@ class Group < ApplicationRecord
   validates :name, presence: true
 
   def tickets_sold
-    sold = 0
-    Seller.where(group_id: id).each do |seller|
-      sold += seller.tickets_sold
-    end
-    sold
+    Seller.where(group_id: id).map(&:tickets_sold).sum
   end
 
   def books_sold
-    sold = 0
-    Seller.where(group_id: id).each do |seller|
-      sold += seller.books_sold
-    end
-    sold
+    Seller.where(group_id: id).map(&:books_sold).sum
   end
 
   def sellers_quantity

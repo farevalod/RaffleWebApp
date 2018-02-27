@@ -6,19 +6,11 @@ class Institution < ApplicationRecord
   validates :name, :tickets_per_book, :books_per_seller, :draw_date, :ticket_price, :max_books_per_seller, presence: true
 
   def tickets_sold
-    sold = 0
-    Group.where(institution_id: id).each do |group|
-      sold += group.tickets_sold
-    end
-    sold
+    Group.where(institution_id: id).map(&:tickets_sold).sum
   end
 
   def books_sold
-    sold = 0
-    Group.where(institution_id: id).each do |group|
-      sold += group.books_sold
-    end
-    sold
+    Group.where(institution_id: id).map(&:books_sold).sum
   end
 
   def sellers_quantity
@@ -26,11 +18,7 @@ class Institution < ApplicationRecord
   end
 
   def tickets_paid
-    paid = 0
-    Seller.where(institution_id: id).each do |seller|
-      paid += seller.tickets_paid
-    end
-    paid
+    Seller.where(institution_id: id).map(&:tickets_paid).sum
   end
 
   def groups_count
@@ -49,15 +37,5 @@ class Institution < ApplicationRecord
     if ad_lv.between?(1, 2) or (ad_lv.between?(3, 4) and (admin.institution_id == institution_id.to_i) )
       self.find(institution_id)
     end
-
-    # case admin.admin_level
-    #   when 1 .. 2
-    #     return Institution.find(institution_id)
-    #   when 3 .. 4
-    #     return nil if admin.institution_id != institution_id
-    #     return Institution.find(institution_id)
-    # end
   end
-
-
 end

@@ -1,16 +1,18 @@
 class Seller < ApplicationRecord
   belongs_to :institution
   belongs_to :group
-  has_many :books
+  # http://guides.rubyonrails.org/association_basics.html
+  # dependent: destroy
+  has_many :books, dependent: :destroy
+  has_many :tickets, through: :books, dependent: :destroy
   before_create :confirmation_token
   has_secure_password
   validates :name, :rut, :password_digest, presence: true
 
-  #------------------------------------------------------------------------------------------
   private
   def confirmation_token
-    if self.confirm_token.blank?
-      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    if confirm_token.blank?
+      confirm_token = SecureRandom.urlsafe_base64.to_s
     end
   end
 
@@ -31,12 +33,11 @@ class Seller < ApplicationRecord
   def modify_user_name
     coincidences_count = (Seller.where(institution_id: institution_id).where(name: name).count - 1)
     unless coincidences_count.zero?
-      new_user_name = self.user_name += coincidences_count.to_s
+      new_user_name = user_name += coincidences_count.to_s
       update(user_name: new_user_name )
     end
   end
 
-  #------------------------------------------------------------------------------------------
   public
 
   # Este metodo se usa para evitar tener varios métodos del modelo en la acción create del controlador.
@@ -45,22 +46,10 @@ class Seller < ApplicationRecord
     modify_user_name
   end
 
-  def del_seller_books_and_tickets
-    # Este script elimina los talonario y los boletos asociados a un vendedor.
-    # >>>>> OJO: RIESGOSO EN PRODUCCIÓN <<<<<
-    books_ids = Book.where(seller_id: id).ids.uniq
-    if books_ids.any?
-      books_ids.each do |bid|
-        Ticket.where(book_id: bid).destroy_all
-      end
-      Book.where(seller_id: id).destroy_all
-    end
-    destroy
-  end
-
   def tickets_sold
     sold = 0
-    Book.where(seller_id: id).each do |book|
+	books.map(&:tickets).select(&:sold)
+    Book.where(seller_id: id).map(&:books)each do |book|
       sold += Ticket.where(book_id: book.id).where(sold: true).count
     end
     sold
